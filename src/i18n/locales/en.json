@@ -1,7 +1,8 @@
 {
   "translation": {
-    "login": {
-      "title": "Login",
+    "auth": {
+      "login": {
+        "title": "Login",
       "email": "Email",
       "password": "Password",
       "forgotPassword": "Forgot password?",
@@ -9,7 +10,8 @@
       "signUp": "Sign Up",
       "dontHaveAccount": "Don't have an account?",
       "emailError": "Email is required",
-      "passwordError": "Password is required"
+        "passwordError": "Password is required"
+      }
     },
     "common": {
       "next": "Continue",
@@ -19,6 +21,7 @@
       "select": "Select",
       "example": "Ex:"
     },
+    "initialForm": {
     "basicInfo": {
       "title": "Welcome!",
       "description": "To provide you with a personalized experience 🚀, we need to collect some important information about you.",
@@ -85,6 +88,7 @@
           "title": "Extra active",
           "description": "Very intense daily exercise or intense physical work",
           "examples": "Ex: Athlete, farmer, builder"
+          }
         }
       }
     }

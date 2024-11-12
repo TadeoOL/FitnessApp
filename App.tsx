@@ -1,4 +1,3 @@
-import { enableScreens } from "react-native-screens";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "./global.css";
 import { NavigationContainer } from "@react-navigation/native";
@@ -7,8 +6,6 @@ import Toast from "react-native-toast-message";
 import { toastConfig } from "./src/components/toast/config";
 import { useThemeStore } from "./src/store/useThemeStore";
 import "./src/i18n";
-
-enableScreens(true);
 
 export default function App() {
   const { theme } = useThemeStore();

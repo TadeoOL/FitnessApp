@@ -1,7 +1,8 @@
 {
   "translation": {
-    "login": {
-      "title": "Inicio de sesión",
+    "auth": {
+      "login": {
+        "title": "Inicio de sesión",
       "email": "Correo electrónico",
       "password": "Contraseña",
       "forgotPassword": "¿Olvidaste tu contraseña?",
@@ -9,7 +10,8 @@
       "signUp": "Registrarse",
       "dontHaveAccount": "¿No tienes una cuenta?",
       "emailError": "Es necesario ingresar un correo electrónico.",
-      "passwordError": "Es necesario ingresar una contraseña."
+        "passwordError": "Es necesario ingresar una contraseña."
+      }
     },
     "common": {
       "next": "Continuar",
@@ -19,6 +21,7 @@
       "select": "Seleccionar",
       "example": "Ej:"
     },
+    "initialForm": {
     "basicInfo": {
       "title": "¡Bienvenido!",
       "description": "Para brindarte una experiencia personalizada 🚀, necesitamos recolectar algunos datos importantes sobre ti.",
@@ -85,6 +88,7 @@
       "bodyMeasurement": {
         "title": "Medición del Cuerpo",
         "subtitle": "Selecciona el tipo de medición que mejor describa tu cuerpo"
+        }
       }
     }
   }

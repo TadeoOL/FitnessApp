@@ -23,8 +23,11 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { useState } from "react";
 import { useSetupStore } from "../store/useSetupStore";
 import { useTranslation } from "react-i18next";
+import { useAppTheme } from "@/src/hooks/useAppTheme";
+import { CustomTheme } from "@/theme/theme";
 
 export const PersonalInfoScreen = () => {
+  const { theme } = useAppTheme();
   const navigation =
     useNavigation<NativeStackNavigationProp<SetupStackParamList>>();
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -68,20 +71,17 @@ export const PersonalInfoScreen = () => {
   };
 
   return (
-    <SafeAreaView style={[commonStyles.mainContainer, styles.container]}>
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => navigation.goBack()}
-      >
-        <Text style={styles.backButtonText}>← {t("common.back")}</Text>
-      </TouchableOpacity>
+    <SafeAreaView
+      style={[commonStyles(theme).mainContainer, styles(theme).container]}
+    >
+      <View style={commonStyles(theme).contentContainer}>
+        <Text style={commonStyles(theme).title}>
+          {t("initialForm.personalInfo.title")}
+        </Text>
 
-      <View style={commonStyles.contentContainer}>
-        <Text style={commonStyles.title}>{t("personalInfo.title")}</Text>
-
-        <View style={styles.inputContainer}>
-          <Text style={commonStyles.inputLabel}>
-            {t("personalInfo.fullName.label")}
+        <View style={styles(theme).inputContainer}>
+          <Text style={commonStyles(theme).inputLabel}>
+            {t("initialForm.personalInfo.fullName.label")}
           </Text>
           <Controller
             control={control}
@@ -89,15 +89,20 @@ export const PersonalInfoScreen = () => {
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <>
                 <TextInput
-                  style={[commonStyles.input, error && commonStyles.inputError]}
+                  style={[
+                    commonStyles(theme).input,
+                    error && commonStyles(theme).inputError,
+                  ]}
                   onChangeText={onChange}
                   value={value}
-                  placeholder={t("personalInfo.fullName.placeholder")}
+                  placeholder={t(
+                    "initialForm.personalInfo.fullName.placeholder"
+                  )}
                   placeholderTextColor={colorPalette.text.secondary}
                 />
                 {error && (
-                  <Text style={commonStyles.inputErrorText}>
-                    {t("personalInfo.fullName.error")}
+                  <Text style={commonStyles(theme).inputErrorText}>
+                    {t("initialForm.personalInfo.fullName.error")}
                   </Text>
                 )}
               </>
@@ -105,9 +110,9 @@ export const PersonalInfoScreen = () => {
           />
         </View>
 
-        <View style={styles.inputContainer}>
-          <Text style={commonStyles.inputLabel}>
-            {t("personalInfo.birthDate.label")}
+        <View style={styles(theme).inputContainer}>
+          <Text style={commonStyles(theme).inputLabel}>
+            {t("initialForm.personalInfo.birthDate.label")}
           </Text>
           <Controller
             control={control}
@@ -117,20 +122,20 @@ export const PersonalInfoScreen = () => {
                 <TouchableOpacity onPress={() => setShowDatePicker(true)}>
                   <View
                     style={[
-                      commonStyles.input,
-                      styles.dateInput,
-                      error && commonStyles.inputError,
+                      commonStyles(theme).input,
+                      styles(theme).dateInput,
+                      error && commonStyles(theme).inputError,
                     ]}
                   >
                     <Text className="text-base text-primary-main">
                       {birthDate?.toLocaleDateString() ||
-                        t("personalInfo.birthDate.placeholder")}
+                        t("initialForm.personalInfo.birthDate.placeholder")}
                     </Text>
                   </View>
                 </TouchableOpacity>
                 {error && (
-                  <Text style={commonStyles.inputErrorText}>
-                    {t("personalInfo.birthDate.error")}
+                  <Text style={commonStyles(theme).inputErrorText}>
+                    {t("initialForm.personalInfo.birthDate.error")}
                   </Text>
                 )}
               </>
@@ -138,10 +143,10 @@ export const PersonalInfoScreen = () => {
           />
 
           <Modal visible={showDatePicker} transparent animationType="fade">
-            <View style={styles.modalOverlay}>
-              <View style={styles.modalContent}>
-                <Text style={styles.modalTitle}>
-                  {t("personalInfo.birthDate.modalTitle")}
+            <View style={styles(theme).modalOverlay}>
+              <View style={styles(theme).modalContent}>
+                <Text style={commonStyles(theme).inputLabel}>
+                  {t("initialForm.personalInfo.birthDate.modalTitle")}
                 </Text>
 
                 <DateTimePicker
@@ -153,22 +158,29 @@ export const PersonalInfoScreen = () => {
                   onChange={handleDateChange}
                   maximumDate={new Date()}
                   minimumDate={new Date(1900, 0, 1)}
+                  textColor={theme.customColors.text.primary}
                 />
 
-                <View style={styles.modalButtons}>
+                <View style={styles(theme).modalButtons}>
                   <TouchableOpacity
                     onPress={() => setShowDatePicker(false)}
-                    style={[styles.modalButton, styles.cancelButton]}
+                    style={[
+                      styles(theme).modalButton,
+                      styles(theme).cancelButton,
+                    ]}
                   >
-                    <Text style={styles.cancelButtonText}>
+                    <Text style={styles(theme).cancelButtonText}>
                       {t("common.cancel")}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={handleConfirmIOS}
-                    style={[styles.modalButton, styles.confirmButton]}
+                    style={[
+                      styles(theme).modalButton,
+                      styles(theme).confirmButton,
+                    ]}
                   >
-                    <Text style={styles.confirmButtonText}>
+                    <Text style={styles(theme).confirmButtonText}>
                       {t("common.confirm")}
                     </Text>
                   </TouchableOpacity>
@@ -180,88 +192,101 @@ export const PersonalInfoScreen = () => {
       </View>
 
       <TouchableOpacity
-        style={[commonStyles.primaryButton]}
+        style={[commonStyles(theme).primaryButton]}
         onPress={handleSubmit(onSubmit)}
       >
-        <Text style={commonStyles.buttonText}>{t("common.next")}</Text>
+        <Text style={commonStyles(theme).buttonText}>{t("common.next")}</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  backButton: {
-    paddingVertical: 10,
-    marginBottom: 20,
-  },
-  backButtonText: {
-    fontSize: 16,
-    color: colorPalette.secondary.main,
-  },
-  inputContainer: {
-    marginBottom: 25,
-  },
-  buttonDisabled: {
-    backgroundColor: colorPalette.background.paper,
-  },
-  dateInput: {
-    borderWidth: 1,
-    borderColor: colorPalette.primary.main,
-    borderRadius: 5,
-    padding: 10,
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  modalContent: {
-    backgroundColor: colorPalette.background.paper,
-    borderRadius: 10,
-    padding: 20,
-    width: "90%",
-    maxWidth: 340,
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: colorPalette.text.primary,
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  modalButtons: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 20,
-  },
-  modalButton: {
-    flex: 1,
-    padding: 15,
-    borderRadius: 8,
-    marginHorizontal: 5,
-  },
-  cancelButton: {
-    backgroundColor: colorPalette.background.default,
-    borderWidth: 1,
-    borderColor: colorPalette.error.main,
-  },
-  confirmButton: {
-    backgroundColor: colorPalette.secondary.main,
-  },
-  cancelButtonText: {
-    color: colorPalette.error.main,
-    textAlign: "center",
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  confirmButtonText: {
-    color: colorPalette.text.primary,
-    textAlign: "center",
-    fontSize: 16,
-    fontWeight: "600",
-  },
-});
+const styles = (theme: CustomTheme) =>
+  StyleSheet.create({
+    container: {
+      paddingHorizontal: 20,
+    },
+    backButton: {
+      paddingVertical: 10,
+      marginBottom: 20,
+    },
+    backButtonText: {
+      fontSize: 16,
+      color: theme.customColors.secondary.main,
+    },
+    inputContainer: {
+      marginBottom: 25,
+    },
+    buttonDisabled: {
+      backgroundColor: theme.customColors.background.paper,
+    },
+    dateInput: {
+      borderWidth: 1,
+      borderColor: theme.customColors.primary.main,
+      borderRadius: 5,
+      padding: 10,
+    },
+    modalOverlay: {
+      flex: 1,
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    modalContent: {
+      backgroundColor: theme.customColors.background.paper,
+      borderRadius: 10,
+      padding: 20,
+      width: "90%",
+      maxWidth: 340,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+    },
+    modalTitle: {
+      fontSize: 18,
+      fontWeight: "bold",
+      color: theme.dark
+        ? theme.customColors.text.primary // Blanco en modo oscuro
+        : theme.customColors.text.primary, // Negro en modo claro
+      textAlign: "center",
+      marginBottom: 20,
+    },
+    modalButtons: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginTop: 20,
+    },
+    modalButton: {
+      flex: 1,
+      padding: 15,
+      borderRadius: 8,
+      marginHorizontal: 5,
+    },
+    cancelButton: {
+      backgroundColor: theme.customColors.background.default,
+      borderWidth: 1,
+      borderColor: theme.customColors.error.main,
+    },
+    confirmButton: {
+      backgroundColor: theme.customColors.secondary.main,
+    },
+    cancelButtonText: {
+      color: theme.customColors.error.main,
+      textAlign: "center",
+      fontSize: 16,
+      fontWeight: "600",
+    },
+    confirmButtonText: {
+      color: theme.dark
+        ? theme.customColors.text.primary // Blanco en modo oscuro
+        : "#FFFFFF", // Blanco en modo claro (para contraste con el botón)
+      textAlign: "center",
+      fontSize: 16,
+      fontWeight: "600",
+    },
+  });

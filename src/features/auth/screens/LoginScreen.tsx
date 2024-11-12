@@ -19,6 +19,7 @@ import { useAuthStore } from "../store/useAuth";
 import { useNavigation } from "@react-navigation/native";
 import { AuthScreenNavigationProp } from "@/src/types/navigation";
 import { useTranslation } from "react-i18next";
+import { useAppTheme } from "@/src/hooks/useAppTheme";
 const { width, height } = Dimensions.get("window");
 
 export const LoginScreen = () => {
@@ -29,7 +30,7 @@ export const LoginScreen = () => {
   } = useForm();
   const navigation = useNavigation<AuthScreenNavigationProp>();
   const { t } = useTranslation();
-
+  const { theme } = useAppTheme();
   const { setIsLoggedIn } = useAuthStore();
 
   const onSubmit = (data: any) => {
@@ -44,11 +45,11 @@ export const LoginScreen = () => {
   return (
     <ImageBackground
       source={require("../../../../assets/fitness-background.jpg")}
-      style={commonStyles.mainContainer}
+      style={commonStyles(theme).mainContainer}
       resizeMode="cover"
     >
       <TouchableWithoutFeedback onPress={dismissKeyboard}>
-        <View style={commonStyles.container}>
+        <View style={commonStyles(theme).container}>
           <View style={styles.icon}>
             <Image
               source={require("../.././../../assets/icon-login.png")}
@@ -58,11 +59,11 @@ export const LoginScreen = () => {
           </View>
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={commonStyles.keyboardAvoidingView}
+            style={commonStyles(theme).keyboardAvoidingView}
           >
             <TouchableWithoutFeedback onPress={dismissKeyboard}>
               <View style={styles.card}>
-                <Text style={styles.cardTitle}>{t("login.title")}</Text>
+                <Text style={styles.cardTitle}>{t("auth.login.title")}</Text>
                 <Controller
                   control={control}
                   rules={{
@@ -73,14 +74,16 @@ export const LoginScreen = () => {
                       style={[styles.input, errors.email && styles.inputError]}
                       onChangeText={onChange}
                       value={value}
-                      placeholder={t("login.email")}
+                      placeholder={t("auth.login.email")}
                       keyboardType="email-address"
                     />
                   )}
                   name="email"
                 />
                 {errors.email && (
-                  <Text style={styles.errorText}>{t("login.emailError")}</Text>
+                  <Text style={styles.errorText}>
+                    {t("auth.login.emailError")}
+                  </Text>
                 )}
 
                 <Controller
@@ -96,7 +99,7 @@ export const LoginScreen = () => {
                       ]}
                       onChangeText={onChange}
                       value={value}
-                      placeholder={t("login.password")}
+                      placeholder={t("auth.login.password")}
                       secureTextEntry
                     />
                   )}
@@ -104,26 +107,28 @@ export const LoginScreen = () => {
                 />
                 {errors.password && (
                   <Text style={styles.errorText}>
-                    {t("login.passwordError")}
+                    {t("auth.login.passwordError")}
                   </Text>
                 )}
                 <TouchableOpacity
-                  style={commonStyles.primaryButton}
+                  style={commonStyles(theme).primaryButton}
                   onPress={handleSubmit(onSubmit)}
                 >
-                  <Text style={commonStyles.buttonText}>
-                    {t("login.signIn")}
+                  <Text style={commonStyles(theme).buttonText}>
+                    {t("auth.login.signIn")}
                   </Text>
                 </TouchableOpacity>
 
                 <View style={styles.footer}>
                   <Text style={styles.footerText}>
-                    {t("login.dontHaveAccount")}
+                    {t("auth.login.dontHaveAccount")}
                   </Text>
                   <TouchableOpacity
                     onPress={() => navigation.navigate("Register")}
                   >
-                    <Text style={styles.footerLink}>{t("login.signUp")}</Text>
+                    <Text style={styles.footerLink}>
+                      {t("auth.login.signUp")}
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>

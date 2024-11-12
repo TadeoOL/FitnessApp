@@ -19,8 +19,10 @@ import {
 } from "../schema/bodyMeasurementsSchema";
 import { useSetupStore } from "../store/useSetupStore";
 import { useTranslation } from "react-i18next";
+import { useAppTheme } from "@/src/hooks/useAppTheme";
 
 export const BodyMeasurementsScreen = () => {
+  const { theme } = useAppTheme();
   const navigation =
     useNavigation<NativeStackNavigationProp<SetupStackParamList>>();
   const { t } = useTranslation();
@@ -41,20 +43,15 @@ export const BodyMeasurementsScreen = () => {
   };
 
   return (
-    <SafeAreaView style={[commonStyles.mainContainer, styles.container]}>
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => navigation.goBack()}
-      >
-        <Text style={styles.backButtonText}>← {t("common.back")}</Text>
-      </TouchableOpacity>
-
-      <View style={commonStyles.contentContainer}>
-        <Text style={commonStyles.title}>{t("bodyMeasurements.title")}</Text>
+    <SafeAreaView style={[commonStyles(theme).mainContainer, styles.container]}>
+      <View style={commonStyles(theme).contentContainer}>
+        <Text style={commonStyles(theme).title}>
+          {t("initialForm.bodyMeasurements.title")}
+        </Text>
 
         <View style={styles.inputContainer}>
-          <Text style={commonStyles.inputLabel}>
-            {t("bodyMeasurements.height.label")}
+          <Text style={commonStyles(theme).inputLabel}>
+            {t("initialForm.bodyMeasurements.height.label")}
           </Text>
           <Controller
             control={control}
@@ -62,17 +59,22 @@ export const BodyMeasurementsScreen = () => {
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <>
                 <TextInput
-                  style={[commonStyles.input, error && commonStyles.inputError]}
+                  style={[
+                    commonStyles(theme).input,
+                    error && commonStyles(theme).inputError,
+                  ]}
                   onChangeText={onChange}
                   value={value}
-                  placeholder={t("bodyMeasurements.height.placeholder")}
+                  placeholder={t(
+                    "initialForm.bodyMeasurements.height.placeholder"
+                  )}
                   keyboardType="numeric"
                   maxLength={3}
                   placeholderTextColor={colorPalette.text.secondary}
                 />
                 {error && (
-                  <Text style={commonStyles.inputErrorText}>
-                    {t("bodyMeasurements.height.error")}
+                  <Text style={commonStyles(theme).inputErrorText}>
+                    {t("initialForm.bodyMeasurements.height.error")}
                   </Text>
                 )}
               </>
@@ -81,8 +83,8 @@ export const BodyMeasurementsScreen = () => {
         </View>
 
         <View style={styles.inputContainer}>
-          <Text style={commonStyles.inputLabel}>
-            {t("bodyMeasurements.weight.label")}
+          <Text style={commonStyles(theme).inputLabel}>
+            {t("initialForm.bodyMeasurements.weight.label")}
           </Text>
           <Controller
             control={control}
@@ -90,17 +92,22 @@ export const BodyMeasurementsScreen = () => {
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <>
                 <TextInput
-                  style={[commonStyles.input, error && commonStyles.inputError]}
+                  style={[
+                    commonStyles(theme).input,
+                    error && commonStyles(theme).inputError,
+                  ]}
                   onChangeText={onChange}
                   value={value}
-                  placeholder={t("bodyMeasurements.weight.placeholder")}
+                  placeholder={t(
+                    "initialForm.bodyMeasurements.weight.placeholder"
+                  )}
                   keyboardType="numeric"
                   maxLength={3}
                   placeholderTextColor={colorPalette.text.secondary}
                 />
                 {error && (
-                  <Text style={commonStyles.inputErrorText}>
-                    {t("bodyMeasurements.weight.error")}
+                  <Text style={commonStyles(theme).inputErrorText}>
+                    {t("initialForm.bodyMeasurements.weight.error")}
                   </Text>
                 )}
               </>
@@ -110,10 +117,10 @@ export const BodyMeasurementsScreen = () => {
       </View>
 
       <TouchableOpacity
-        style={commonStyles.primaryButton}
+        style={commonStyles(theme).primaryButton}
         onPress={handleSubmit(onSubmit)}
       >
-        <Text style={commonStyles.buttonText}>{t("common.next")}</Text>
+        <Text style={commonStyles(theme).buttonText}>{t("common.next")}</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -122,14 +129,6 @@ export const BodyMeasurementsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-  },
-  backButton: {
-    paddingVertical: 10,
-    marginBottom: 20,
-  },
-  backButtonText: {
-    fontSize: 16,
-    color: colorPalette.secondary.main,
   },
   inputContainer: {
     marginBottom: 25,

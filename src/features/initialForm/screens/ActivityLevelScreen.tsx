@@ -1,13 +1,11 @@
 import { Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { SetupStackParamList } from "@/src/types/navigation";
 import { SafeAreaView } from "react-native-safe-area-context";
 import colorPalette from "@/theme/colorPalette";
 import { commonStyles } from "@/theme/commonStyles";
 import { useState } from "react";
 import { useSetupStore } from "../store/useSetupStore";
 import { useTranslation } from "react-i18next";
+import { useAppTheme } from "@/src/hooks/useAppTheme";
 
 type ActivityLevel = {
   id: string;
@@ -56,13 +54,12 @@ const activityLevels: ActivityLevel[] = [
 ];
 
 export const ActivityLevelScreen = () => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<SetupStackParamList>>();
   const { activityLevel, setActivityLevel } = useSetupStore();
   const [selectedLevel, setSelectedLevel] = useState<string | null>(
     activityLevel?.id || null
   );
   const { t } = useTranslation();
+  const { theme } = useAppTheme();
 
   const handleContinue = () => {
     if (selectedLevel) {
@@ -80,16 +77,18 @@ export const ActivityLevelScreen = () => {
   };
 
   return (
-    <SafeAreaView style={[commonStyles.mainContainer, styles.container]}>
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => navigation.goBack()}
-      >
-        <Text style={styles.backButtonText}>← {t("common.back")}</Text>
-      </TouchableOpacity>
-
-      <Text style={commonStyles.title}>{t("activityLevel.title")}</Text>
-      <Text style={styles.subtitle}>{t("activityLevel.subtitle")}</Text>
+    <SafeAreaView
+      style={[
+        styles.container,
+        { backgroundColor: theme.customColors.background.default },
+      ]}
+    >
+      <Text style={[styles.title, { color: theme.customColors.text.primary }]}>
+        {t("initialForm.activityLevel.title")}
+      </Text>
+      <Text style={styles.subtitle}>
+        {t("initialForm.activityLevel.subtitle")}
+      </Text>
 
       <ScrollView
         style={styles.optionsContainer}
@@ -111,7 +110,7 @@ export const ActivityLevelScreen = () => {
                 selectedLevel === level.id && styles.selectedText,
               ]}
             >
-              {t(`activityLevel.levels.${level.id}.title`)}
+              {t(`initialForm.activityLevel.levels.${level.id}.title`)}
             </Text>
             <Text
               style={[
@@ -119,7 +118,7 @@ export const ActivityLevelScreen = () => {
                 selectedLevel === level.id && styles.selectedText,
               ]}
             >
-              {t(`activityLevel.levels.${level.id}.description`)}
+              {t(`initialForm.activityLevel.levels.${level.id}.description`)}
             </Text>
             <Text
               style={[
@@ -127,7 +126,7 @@ export const ActivityLevelScreen = () => {
                 selectedLevel === level.id && styles.selectedText,
               ]}
             >
-              {t(`activityLevel.levels.${level.id}.examples`)}
+              {t(`initialForm.activityLevel.levels.${level.id}.examples`)}
             </Text>
           </TouchableOpacity>
         ))}
@@ -135,13 +134,13 @@ export const ActivityLevelScreen = () => {
 
       <TouchableOpacity
         style={[
-          commonStyles.primaryButton,
+          commonStyles(theme).primaryButton,
           !selectedLevel && styles.buttonDisabled,
         ]}
         onPress={handleContinue}
         disabled={!selectedLevel}
       >
-        <Text style={commonStyles.buttonText}>{t("common.next")}</Text>
+        <Text style={commonStyles(theme).buttonText}>{t("common.next")}</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -150,7 +149,8 @@ export const ActivityLevelScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingBottom: 20,
   },
   backButton: {
     paddingVertical: 10,
@@ -203,5 +203,10 @@ const styles = StyleSheet.create({
     color: colorPalette.text.secondary,
     marginTop: 4,
     fontStyle: "italic",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: colorPalette.text.primary,
   },
 });
