@@ -3,14 +3,15 @@ import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import { SetupStackParamList } from "@/src/types/navigation";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useTranslation } from "react-i18next";
-import { useAppTheme } from "@/src/hooks/useAppTheme";
 import { CustomTheme } from "@/theme/theme";
+import { useTheme } from "@/src/store/useThemeStore";
+import { commonStyles } from "@/theme/commonStyles";
 
 export const BasicInfoScreen = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<SetupStackParamList>>();
   const { t } = useTranslation();
-  const { theme } = useAppTheme();
+  const theme = useTheme();
   const handleContinue = () => {
     navigation.navigate("PersonalInfo");
   };
@@ -46,8 +47,11 @@ export const BasicInfoScreen = () => {
         </View>
       </View>
 
-      <TouchableOpacity style={styles(theme).button} onPress={handleContinue}>
-        <Text style={styles(theme).buttonText}>{t("common.next")}</Text>
+      <TouchableOpacity
+        style={commonStyles(theme).primaryButton}
+        onPress={handleContinue}
+      >
+        <Text style={commonStyles(theme).buttonText}>{t("common.next")}</Text>
       </TouchableOpacity>
     </View>
   );

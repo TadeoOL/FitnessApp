@@ -11,7 +11,6 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { SetupStackParamList } from "@/src/types/navigation";
 import { SafeAreaView } from "react-native-safe-area-context";
-import colorPalette from "@/theme/colorPalette";
 import { commonStyles } from "@/theme/commonStyles";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,11 +22,11 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { useState } from "react";
 import { useSetupStore } from "../store/useSetupStore";
 import { useTranslation } from "react-i18next";
-import { useAppTheme } from "@/src/hooks/useAppTheme";
 import { CustomTheme } from "@/theme/theme";
+import { useTheme } from "@/src/store/useThemeStore";
 
 export const PersonalInfoScreen = () => {
-  const { theme } = useAppTheme();
+  const theme = useTheme();
   const navigation =
     useNavigation<NativeStackNavigationProp<SetupStackParamList>>();
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -98,7 +97,7 @@ export const PersonalInfoScreen = () => {
                   placeholder={t(
                     "initialForm.personalInfo.fullName.placeholder"
                   )}
-                  placeholderTextColor={colorPalette.text.secondary}
+                  placeholderTextColor={theme.customColors.text.secondary}
                 />
                 {error && (
                   <Text style={commonStyles(theme).inputErrorText}>

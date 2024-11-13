@@ -26,3 +26,14 @@ export type MainStackParamList = {
 export type AuthScreenNavigationProp = NativeStackNavigationProp<AuthStackParamList>;
 export type SetupScreenNavigationProp = keyof SetupStackParamList;
 export type MainScreenNavigationProp = NativeStackNavigationProp<MainStackParamList>; 
+
+export type RootStackParamList = {
+  MainTabs: undefined;
+  SettingsModal: undefined;
+};
+
+export type SettingsStackParamList = {
+  SettingsMain: undefined;
+  SettingsDetail: undefined;
+  SettingsDisplay: undefined;
+};

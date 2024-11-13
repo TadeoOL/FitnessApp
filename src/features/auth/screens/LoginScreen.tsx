@@ -13,14 +13,17 @@ import {
   View,
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import colorPalette from "theme/colorPalette";
-import { commonStyles } from "theme/commonStyles";
+import { commonStyles } from "@/theme/commonStyles";
 import { useAuthStore } from "../store/useAuth";
 import { useNavigation } from "@react-navigation/native";
 import { AuthScreenNavigationProp } from "@/src/types/navigation";
 import { useTranslation } from "react-i18next";
-import { useAppTheme } from "@/src/hooks/useAppTheme";
+import { useTheme } from "@/src/store/useThemeStore";
+import { CustomTheme } from "@/theme/theme";
 const { width, height } = Dimensions.get("window");
+
+const backgroundImage = require("../../../../assets/fitness-background.jpg");
+const iconImage = require("../../../../assets/icon-login.png");
 
 export const LoginScreen = () => {
   const {
@@ -30,7 +33,9 @@ export const LoginScreen = () => {
   } = useForm();
   const navigation = useNavigation<AuthScreenNavigationProp>();
   const { t } = useTranslation();
-  const { theme } = useAppTheme();
+  const theme = useTheme();
+  console.log(backgroundImage);
+  console.log(iconImage);
   const { setIsLoggedIn } = useAuthStore();
 
   const onSubmit = (data: any) => {
@@ -44,16 +49,16 @@ export const LoginScreen = () => {
 
   return (
     <ImageBackground
-      source={require("../../../../assets/fitness-background.jpg")}
+      source={backgroundImage}
       style={commonStyles(theme).mainContainer}
       resizeMode="cover"
     >
       <TouchableWithoutFeedback onPress={dismissKeyboard}>
         <View style={commonStyles(theme).container}>
-          <View style={styles.icon}>
+          <View style={styles(theme).icon}>
             <Image
-              source={require("../.././../../assets/icon-login.png")}
-              style={styles.iconImage}
+              source={iconImage}
+              style={styles(theme).iconImage}
               resizeMode="contain"
             />
           </View>
@@ -62,8 +67,10 @@ export const LoginScreen = () => {
             style={commonStyles(theme).keyboardAvoidingView}
           >
             <TouchableWithoutFeedback onPress={dismissKeyboard}>
-              <View style={styles.card}>
-                <Text style={styles.cardTitle}>{t("auth.login.title")}</Text>
+              <View style={styles(theme).card}>
+                <Text style={styles(theme).cardTitle}>
+                  {t("auth.login.title")}
+                </Text>
                 <Controller
                   control={control}
                   rules={{
@@ -71,7 +78,10 @@ export const LoginScreen = () => {
                   }}
                   render={({ field: { onChange, value } }) => (
                     <TextInput
-                      style={[styles.input, errors.email && styles.inputError]}
+                      style={[
+                        styles(theme).input,
+                        errors.email && styles(theme).inputError,
+                      ]}
                       onChangeText={onChange}
                       value={value}
                       placeholder={t("auth.login.email")}
@@ -81,7 +91,7 @@ export const LoginScreen = () => {
                   name="email"
                 />
                 {errors.email && (
-                  <Text style={styles.errorText}>
+                  <Text style={styles(theme).errorText}>
                     {t("auth.login.emailError")}
                   </Text>
                 )}
@@ -94,8 +104,8 @@ export const LoginScreen = () => {
                   render={({ field: { onChange, value } }) => (
                     <TextInput
                       style={[
-                        styles.input,
-                        errors.password && styles.inputError,
+                        styles(theme).input,
+                        errors.password && styles(theme).inputError,
                       ]}
                       onChangeText={onChange}
                       value={value}
@@ -106,7 +116,7 @@ export const LoginScreen = () => {
                   name="password"
                 />
                 {errors.password && (
-                  <Text style={styles.errorText}>
+                  <Text style={styles(theme).errorText}>
                     {t("auth.login.passwordError")}
                   </Text>
                 )}
@@ -119,14 +129,14 @@ export const LoginScreen = () => {
                   </Text>
                 </TouchableOpacity>
 
-                <View style={styles.footer}>
-                  <Text style={styles.footerText}>
+                <View style={styles(theme).footer}>
+                  <Text style={styles(theme).footerText}>
                     {t("auth.login.dontHaveAccount")}
                   </Text>
                   <TouchableOpacity
                     onPress={() => navigation.navigate("Register")}
                   >
-                    <Text style={styles.footerLink}>
+                    <Text style={styles(theme).footerLink}>
                       {t("auth.login.signUp")}
                     </Text>
                   </TouchableOpacity>
@@ -140,77 +150,87 @@ export const LoginScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  icon: {
-    width: width,
-    height: height * 0.3,
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
-    top: height * 0.1,
-  },
-  iconImage: {
-    width: "100%",
-    height: "100%",
-    maxWidth: 300,
-    maxHeight: 300,
-  },
-  card: {
-    backgroundColor: colorPalette.background.paper,
-    paddingVertical: 24,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    elevation: 4,
-    width: "90%",
-    maxWidth: 400,
-    marginTop: height * 0.1,
-    display: "flex",
-  },
-  cardTitle: {
-    color: colorPalette.text.primary,
-    fontSize: 18,
-    fontWeight: "800",
-    marginBottom: 16,
-    textAlign: "center",
-  },
-  input: {
-    backgroundColor: colorPalette.background.default,
-    color: colorPalette.text.primary,
-    borderRadius: 4,
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    marginVertical: 8,
-  },
-  inputError: {
-    borderColor: colorPalette.secondary.main,
-    borderWidth: 1,
-  },
-  errorText: {
-    color: colorPalette.secondary.main,
-    marginTop: 4,
-  },
-  button: {
-    backgroundColor: colorPalette.secondary.main,
-    borderRadius: 4,
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    marginVertical: 16,
-  },
-  buttonText: {
-    color: colorPalette.text.primary,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  footer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  footerText: {
-    color: colorPalette.text.secondary,
-  },
-  footerLink: {
-    color: colorPalette.secondary.main,
-    fontWeight: "medium",
-  },
-});
+const styles = (theme: CustomTheme) =>
+  StyleSheet.create({
+    mainContainer: {
+      flex: 1,
+      backgroundColor: theme.customColors.background.default,
+    },
+    container: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    icon: {
+      width: width,
+      height: height * 0.3,
+      justifyContent: "center",
+      alignItems: "center",
+      position: "absolute",
+      top: height * 0.1,
+    },
+    iconImage: {
+      width: "100%",
+      height: "100%",
+      maxWidth: 300,
+      maxHeight: 300,
+    },
+    card: {
+      backgroundColor: theme.customColors.background.paper,
+      paddingVertical: 24,
+      paddingHorizontal: 20,
+      borderRadius: 8,
+      elevation: 4,
+      width: "90%",
+      maxWidth: 400,
+      marginTop: height * 0.1,
+      display: "flex",
+    },
+    cardTitle: {
+      color: theme.customColors.text.primary,
+      fontSize: 18,
+      fontWeight: "800",
+      marginBottom: 16,
+      textAlign: "center",
+    },
+    input: {
+      backgroundColor: theme.customColors.background.paper,
+      color: theme.customColors.text.primary,
+      borderRadius: 4,
+      paddingVertical: 12,
+      paddingHorizontal: 16,
+      marginVertical: 8,
+    },
+    inputError: {
+      borderColor: theme.customColors.error.main,
+      borderWidth: 1,
+    },
+    errorText: {
+      color: theme.customColors.error.main,
+      marginTop: 4,
+    },
+    button: {
+      backgroundColor: theme.customColors.secondary.main,
+      borderRadius: 4,
+      paddingVertical: 12,
+      paddingHorizontal: 16,
+      marginVertical: 16,
+    },
+    buttonText: {
+      color: theme.colors.text,
+      fontWeight: "bold",
+      textAlign: "center",
+    },
+    footer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    footerText: {
+      color: theme.customColors.text.secondary,
+    },
+    footerLink: {
+      color: theme.customColors.secondary.main,
+      fontWeight: "500",
+    },
+  });

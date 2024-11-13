@@ -3,26 +3,25 @@ import { BasicInfoScreen } from "../../features/initialForm/screens/BasicInfoScr
 import { PersonalInfoScreen } from "@/src/features/initialForm/screens/PersonalInfoScreen";
 import { BodyMeasurementsScreen } from "@/src/features/initialForm/screens/BodyMeasurementsScreen";
 import { ActivityLevelScreen } from "@/src/features/initialForm/screens/ActivityLevelScreen";
-import { ThemeToggle } from "@/src/components/ThemeToggle";
-import { useAppTheme } from "@/src/hooks/useAppTheme";
 import { View } from "react-native";
 import { LanguageToggle } from "@/src/components/LanguageToggle";
+import { useTheme } from "@/src/store/useThemeStore";
 // import { ActivityLevelScreen } from "../../features/initialForm/screens/ActivityLevelScreen";
 
 const Stack = createNativeStackNavigator();
 
 export const InitialFormValidator = () => {
-  const { theme } = useAppTheme();
+  const theme = useTheme();
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: true,
         headerTitle: "",
         animation: "slide_from_right",
+        headerShadowVisible: false,
         headerRight: () => (
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <LanguageToggle />
-            <ThemeToggle />
           </View>
         ),
         animationDuration: 200,
@@ -34,6 +33,7 @@ export const InitialFormValidator = () => {
         headerStyle: {
           backgroundColor: "transparent",
         },
+        headerTintColor: theme.customColors.secondary.main,
       }}
     >
       <Stack.Screen name="BasicInfo" component={BasicInfoScreen} />

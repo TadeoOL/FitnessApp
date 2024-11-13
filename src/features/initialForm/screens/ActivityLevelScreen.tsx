@@ -1,11 +1,12 @@
 import { Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import colorPalette from "@/theme/colorPalette";
 import { commonStyles } from "@/theme/commonStyles";
 import { useState } from "react";
 import { useSetupStore } from "../store/useSetupStore";
 import { useTranslation } from "react-i18next";
-import { useAppTheme } from "@/src/hooks/useAppTheme";
+import { useAuthStore } from "../../auth/store/useAuth";
+import { useTheme } from "@/src/store/useThemeStore";
+import { CustomTheme } from "@/theme/theme";
 
 type ActivityLevel = {
   id: string;
@@ -59,7 +60,8 @@ export const ActivityLevelScreen = () => {
     activityLevel?.id || null
   );
   const { t } = useTranslation();
-  const { theme } = useAppTheme();
+  const theme = useTheme();
+  const { setHasCompletedSetup } = useAuthStore();
 
   const handleContinue = () => {
     if (selectedLevel) {
@@ -71,7 +73,9 @@ export const ActivityLevelScreen = () => {
           id: selectedActivity.id,
           value: selectedActivity.value,
         });
-        // navigation.navigate("NextScreen");
+        //Send data to server
+        //Send to next screen
+        setHasCompletedSetup(true);
       }
     }
   };
@@ -79,19 +83,24 @@ export const ActivityLevelScreen = () => {
   return (
     <SafeAreaView
       style={[
-        styles.container,
+        styles(theme).container,
         { backgroundColor: theme.customColors.background.default },
       ]}
     >
-      <Text style={[styles.title, { color: theme.customColors.text.primary }]}>
+      <Text
+        style={[
+          styles(theme).title,
+          { color: theme.customColors.text.primary },
+        ]}
+      >
         {t("initialForm.activityLevel.title")}
       </Text>
-      <Text style={styles.subtitle}>
+      <Text style={styles(theme).subtitle}>
         {t("initialForm.activityLevel.subtitle")}
       </Text>
 
       <ScrollView
-        style={styles.optionsContainer}
+        style={styles(theme).optionsContainer}
         showsVerticalScrollIndicator={false}
       >
         {activityLevels.map((level) => (
@@ -99,31 +108,31 @@ export const ActivityLevelScreen = () => {
             key={level.id}
             activeOpacity={1}
             style={[
-              styles.optionCard,
-              selectedLevel === level.id && styles.selectedCard,
+              styles(theme).optionCard,
+              selectedLevel === level.id && styles(theme).selectedCard,
             ]}
             onPress={() => setSelectedLevel(level.id)}
           >
             <Text
               style={[
-                styles.optionTitle,
-                selectedLevel === level.id && styles.selectedText,
+                styles(theme).optionTitle,
+                selectedLevel === level.id && styles(theme).selectedText,
               ]}
             >
               {t(`initialForm.activityLevel.levels.${level.id}.title`)}
             </Text>
             <Text
               style={[
-                styles.optionDescription,
-                selectedLevel === level.id && styles.selectedText,
+                styles(theme).optionDescription,
+                selectedLevel === level.id && styles(theme).selectedText,
               ]}
             >
               {t(`initialForm.activityLevel.levels.${level.id}.description`)}
             </Text>
             <Text
               style={[
-                styles.examples,
-                selectedLevel === level.id && styles.selectedText,
+                styles(theme).examples,
+                selectedLevel === level.id && styles(theme).selectedText,
               ]}
             >
               {t(`initialForm.activityLevel.levels.${level.id}.examples`)}
@@ -135,7 +144,7 @@ export const ActivityLevelScreen = () => {
       <TouchableOpacity
         style={[
           commonStyles(theme).primaryButton,
-          !selectedLevel && styles.buttonDisabled,
+          !selectedLevel && styles(theme).buttonDisabled,
         ]}
         onPress={handleContinue}
         disabled={!selectedLevel}
@@ -146,67 +155,68 @@ export const ActivityLevelScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-  },
-  backButton: {
-    paddingVertical: 10,
-    marginBottom: 20,
-  },
-  backButtonText: {
-    fontSize: 16,
-    color: colorPalette.secondary.main,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: colorPalette.text.secondary,
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  optionsContainer: {
-    flex: 1,
-    marginVertical: 20,
-  },
-  optionCard: {
-    backgroundColor: colorPalette.background.paper,
-    borderRadius: 10,
-    padding: 20,
-    marginBottom: 15,
-    borderWidth: 2,
-    borderColor: "transparent",
-  },
-  selectedCard: {
-    borderColor: colorPalette.secondary.main,
-    backgroundColor: colorPalette.secondary.main,
-  },
-  optionTitle: {
-    fontSize: 18,
-    fontWeight: "600",
-    marginBottom: 8,
-    color: colorPalette.text.primary,
-  },
-  optionDescription: {
-    fontSize: 14,
-    color: colorPalette.text.secondary,
-  },
-  selectedText: {
-    color: colorPalette.text.primary,
-  },
-  buttonDisabled: {
-    backgroundColor: colorPalette.background.paper,
-  },
-  examples: {
-    fontSize: 14,
-    color: colorPalette.text.secondary,
-    marginTop: 4,
-    fontStyle: "italic",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: colorPalette.text.primary,
-  },
-});
+const styles = (theme: CustomTheme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: 20,
+      paddingBottom: 20,
+    },
+    backButton: {
+      paddingVertical: 10,
+      marginBottom: 20,
+    },
+    backButtonText: {
+      fontSize: 16,
+      color: theme.customColors.primary.main,
+    },
+    subtitle: {
+      fontSize: 16,
+      color: theme.customColors.text.secondary,
+      textAlign: "center",
+      marginBottom: 20,
+    },
+    optionsContainer: {
+      flex: 1,
+      marginVertical: 20,
+    },
+    optionCard: {
+      backgroundColor: theme.customColors.background.paper,
+      borderRadius: 10,
+      padding: 20,
+      marginBottom: 15,
+      borderWidth: 2,
+      borderColor: "transparent",
+    },
+    selectedCard: {
+      borderColor: theme.customColors.secondary.main,
+      backgroundColor: theme.customColors.secondary.main,
+    },
+    optionTitle: {
+      fontSize: 18,
+      fontWeight: "600",
+      marginBottom: 8,
+      color: theme.customColors.text.primary,
+    },
+    optionDescription: {
+      fontSize: 14,
+      color: theme.customColors.text.secondary,
+    },
+    selectedText: {
+      color: theme.customColors.text.primary,
+    },
+    buttonDisabled: {
+      backgroundColor: theme.customColors.background.paper,
+    },
+    examples: {
+      fontSize: 14,
+      color: theme.customColors.text.secondary,
+      marginTop: 4,
+      fontStyle: "italic",
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: "bold",
+      color: theme.customColors.text.primary,
+    },
+  });

@@ -3,21 +3,19 @@ import { useEffect } from 'react';
 import { useThemeStore } from '../store/useThemeStore';
 
 export const useAppTheme = () => {
-  const { theme, isDarkMode, toggleTheme } = useThemeStore();
   const systemColorScheme = useColorScheme();
+  
+  const themeMode = useThemeStore(state => state.themeMode);
+  const setThemeMode = useThemeStore(state => state.setThemeMode);
 
-  // Opcional: Sincronizar con el tema del sistema
   useEffect(() => {
-    if (systemColorScheme === 'dark' && !isDarkMode) {
-      toggleTheme();
-    } else if (systemColorScheme === 'light' && isDarkMode) {
-      toggleTheme();
+    if (themeMode === 'system') {
+      setThemeMode('system', systemColorScheme);
     }
-  }, [systemColorScheme]);
+  }, [systemColorScheme, themeMode]);
 
   return {
-    theme,
-    isDarkMode,
-    toggleTheme,
+    themeMode,
+    setThemeMode,
   };
 }; 

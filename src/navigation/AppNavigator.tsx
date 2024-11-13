@@ -1,10 +1,10 @@
 import { useAuthStore } from "../features/auth/store/useAuth";
 import { AuthRoutes } from "./routes/AuthRoutes";
 import { SetupRoutes } from "./routes/SetupRoutes";
-import { MainRoutes } from "./routes/MainRoutes";
+import { RootStack } from "./stacks/RootStack";
 
 export const AppNavigator = () => {
-  const { isLoggedIn, hasCompletedSetup } = useAuthStore();
+  const { hasCompletedSetup, isLoggedIn } = useAuthStore();
 
   if (!isLoggedIn) {
     return <AuthRoutes />;
@@ -14,5 +14,5 @@ export const AppNavigator = () => {
     return <SetupRoutes />;
   }
 
-  return <MainRoutes />;
+  return <RootStack />;
 };

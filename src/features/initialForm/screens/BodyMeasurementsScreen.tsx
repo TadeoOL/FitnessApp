@@ -9,7 +9,6 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { SetupStackParamList } from "@/src/types/navigation";
 import { SafeAreaView } from "react-native-safe-area-context";
-import colorPalette from "@/theme/colorPalette";
 import { commonStyles } from "@/theme/commonStyles";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,10 +18,10 @@ import {
 } from "../schema/bodyMeasurementsSchema";
 import { useSetupStore } from "../store/useSetupStore";
 import { useTranslation } from "react-i18next";
-import { useAppTheme } from "@/src/hooks/useAppTheme";
+import { useTheme } from "@/src/store/useThemeStore";
 
 export const BodyMeasurementsScreen = () => {
-  const { theme } = useAppTheme();
+  const theme = useTheme();
   const navigation =
     useNavigation<NativeStackNavigationProp<SetupStackParamList>>();
   const { t } = useTranslation();
@@ -70,7 +69,7 @@ export const BodyMeasurementsScreen = () => {
                   )}
                   keyboardType="numeric"
                   maxLength={3}
-                  placeholderTextColor={colorPalette.text.secondary}
+                  placeholderTextColor={theme.customColors.text.secondary}
                 />
                 {error && (
                   <Text style={commonStyles(theme).inputErrorText}>
@@ -103,7 +102,7 @@ export const BodyMeasurementsScreen = () => {
                   )}
                   keyboardType="numeric"
                   maxLength={3}
-                  placeholderTextColor={colorPalette.text.secondary}
+                  placeholderTextColor={theme.customColors.text.secondary}
                 />
                 {error && (
                   <Text style={commonStyles(theme).inputErrorText}>

@@ -19,7 +19,8 @@
       "cancel": "Cancel",
       "confirm": "Confirm",
       "select": "Select",
-      "example": "Ex:"
+      "example": "Ex:",
+      "done": "Done"
     },
     "initialForm": {
     "basicInfo": {
@@ -90,6 +91,17 @@
           "examples": "Ex: Athlete, farmer, builder"
           }
         }
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "detail": {
+        "title": "Settings Detail"
+      },
+      "sections": {
+        "account": "Account",
+        "display": "Display",
+        "theme": "Theme"
       }
     }
   }

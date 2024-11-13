@@ -19,7 +19,8 @@
       "cancel": "Cancelar",
       "confirm": "Aceptar",
       "select": "Seleccionar",
-      "example": "Ej:"
+      "example": "Ej:",
+      "done": "Listo"
     },
     "initialForm": {
     "basicInfo": {
@@ -89,6 +90,17 @@
         "title": "Medición del Cuerpo",
         "subtitle": "Selecciona el tipo de medición que mejor describa tu cuerpo"
         }
+      }
+    },
+    "settings": {
+      "title": "Configuración",
+      "detail": {
+        "title": "Detalles de Configuración"
+      },
+      "sections": {
+        "account": "Cuenta",
+        "display": "Pantalla",
+        "theme": "Tema"
       }
     }
   }

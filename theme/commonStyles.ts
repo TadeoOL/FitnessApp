@@ -63,7 +63,7 @@ export const commonStyles = (theme: CustomTheme) =>
     justifyContent: "center",
   },
   buttonText: {
-    color: "#ffffff",
+    color: theme.customColors.text.primary,
     fontSize: 16,
     fontWeight: "600",
   },
@@ -84,7 +84,7 @@ export const commonStyles = (theme: CustomTheme) =>
   input: {
     backgroundColor: theme.customColors.background.default,
     borderWidth: 1,
-    borderColor: theme.customColors.border.default,
+    borderColor: theme.customColors.divider,
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 10,
@@ -109,7 +109,7 @@ export const commonStyles = (theme: CustomTheme) =>
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderBottomWidth: 1,
-    borderBottomColor: theme.customColors.border.default,
+    borderBottomColor: theme.customColors.divider,
   },
   listItemText: {
     fontSize: 16,
@@ -137,7 +137,7 @@ export const commonStyles = (theme: CustomTheme) =>
     flexDirection: "row",
     backgroundColor: theme.customColors.background.default,
     borderTopWidth: 1,
-    borderTopColor: theme.customColors.border.default,
+    borderTopColor: theme.customColors.divider,
     paddingBottom: 5, 
   },
   tabItem: {
