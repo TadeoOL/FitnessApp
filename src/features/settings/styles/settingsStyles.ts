@@ -108,7 +108,7 @@ export const settingsStyles = (theme: CustomTheme) =>
       marginTop: 16,
       ...Platform.select({
         android: {
-          fontFamily: 'Roboto-Medium',
+          fontFamily: 'sans-serif-medium',
           letterSpacing: 0.5,
         },
       }),

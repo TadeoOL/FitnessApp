@@ -84,6 +84,11 @@
           "title": "Muy activo",
           "description": "Ejercicio intenso 6-7 días por semana",
           "examples": "Ej: Instructor de gimnasio, cartero, obrero"
+        },
+        "extra": {
+          "title": "Extra activo",
+          "description": "Ejercicio muy intenso diariamente o trabajo físico intenso",
+          "examples": "Ej: Atleta, granjero, constructor"
         }
       },
       "bodyMeasurement": {
