@@ -1,5 +1,5 @@
 import { StyleSheet, Platform, ViewStyle } from "react-native";
-import { CustomTheme } from "@/theme/theme";
+import { CustomTheme } from "@/src/theme/theme";
 
 export const settingsStyles = (theme: CustomTheme) =>
   StyleSheet.create({
@@ -10,7 +10,7 @@ export const settingsStyles = (theme: CustomTheme) =>
     settingsGroup: {
       backgroundColor: theme.customColors.background.paper,
       borderRadius: Platform.select({ ios: 10, android: 8 }),
-      overflow: 'hidden',
+      overflow: "hidden",
       ...(Platform.select({
         android: {
           elevation: 2,
@@ -74,14 +74,14 @@ export const settingsStyles = (theme: CustomTheme) =>
     settingsItemIcon: {
       width: 24,
       marginRight: Platform.select({ ios: 12, android: 16 }),
-      alignItems: 'center',
+      alignItems: "center",
     },
     settingsItemTitle: {
       fontSize: Platform.select({ ios: 17, android: 16 }),
       color: theme.customColors.text.primary,
       ...Platform.select({
         android: {
-          fontFamily: 'Roboto',
+          fontFamily: "Roboto",
         },
       }),
     },
@@ -91,7 +91,7 @@ export const settingsStyles = (theme: CustomTheme) =>
       marginRight: 6,
       ...Platform.select({
         android: {
-          fontFamily: 'Roboto',
+          fontFamily: "Roboto",
         },
       }),
     },
@@ -102,13 +102,13 @@ export const settingsStyles = (theme: CustomTheme) =>
     settingsHeader: {
       fontSize: Platform.select({ ios: 13, android: 14 }),
       color: theme.customColors.text.secondary,
-      textTransform: 'uppercase',
+      textTransform: "uppercase",
       marginBottom: 8,
       marginLeft: 16,
       marginTop: 16,
       ...Platform.select({
         android: {
-          fontFamily: 'sans-serif-medium',
+          fontFamily: "sans-serif-medium",
           letterSpacing: 0.5,
         },
       }),
@@ -121,8 +121,8 @@ export const settingsStyles = (theme: CustomTheme) =>
       marginBottom: 16,
       ...Platform.select({
         android: {
-          fontFamily: 'Roboto',
+          fontFamily: "Roboto",
         },
       }),
     },
-  }); 
+  });

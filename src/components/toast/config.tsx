@@ -1,5 +1,5 @@
 import { BaseToast, ErrorToast } from "react-native-toast-message";
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet, Dimensions, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 const { width } = Dimensions.get("window");
 
@@ -60,15 +60,17 @@ export const toastConfig = {
 
 const styles = StyleSheet.create({
   toast: {
-    borderLeftWidth: 0,
+    position: "absolute",
+    bottom: Platform.OS === "ios" ? 40 : 20,
+    left: 16,
+    right: 16,
     width: width - 32,
     maxWidth: width - 32,
-    height: undefined,
     minHeight: 60,
+    borderRadius: 8,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    borderRadius: 8,
-    elevation: 3,
+    elevation: Platform.OS === "android" ? 5 : undefined,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -78,6 +80,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     alignItems: "center",
     justifyContent: "center",
+    zIndex: 9999,
   },
   contentContainer: {
     flex: 1,

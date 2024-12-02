@@ -4,7 +4,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 export type AuthStackParamList = {
   Login: undefined;
   Register: undefined;
-  ForgotPassword?: { email?: string }; 
+  ForgotPassword?: { email?: string };
 };
 
 // Setup Stack
@@ -23,9 +23,11 @@ export type MainStackParamList = {
 };
 
 // Navigation Props Types
-export type AuthScreenNavigationProp = NativeStackNavigationProp<AuthStackParamList>;
+export type AuthScreenNavigationProp =
+  NativeStackNavigationProp<AuthStackParamList>;
 export type SetupScreenNavigationProp = keyof SetupStackParamList;
-export type MainScreenNavigationProp = NativeStackNavigationProp<MainStackParamList>; 
+export type MainScreenNavigationProp =
+  NativeStackNavigationProp<MainStackParamList>;
 
 export type RootStackParamList = {
   MainTabs: undefined;
@@ -36,4 +38,5 @@ export type SettingsStackParamList = {
   SettingsMain: undefined;
   SettingsDetail: undefined;
   SettingsDisplay: undefined;
+  SettingsAccount: undefined;
 };

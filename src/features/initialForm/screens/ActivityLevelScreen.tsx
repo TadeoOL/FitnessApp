@@ -1,12 +1,12 @@
 import { Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { commonStyles } from "@/theme/commonStyles";
+import { commonStyles } from "@/src/theme/commonStyles";
 import { useState } from "react";
 import { useSetupStore } from "../store/useSetupStore";
 import { useTranslation } from "react-i18next";
 import { useAuthStore } from "../../auth/store/useAuth";
 import { useTheme } from "@/src/store/useThemeStore";
-import { CustomTheme } from "@/theme/theme";
+import { CustomTheme } from "@/src/theme/theme";
 
 type ActivityLevel = {
   id: string;

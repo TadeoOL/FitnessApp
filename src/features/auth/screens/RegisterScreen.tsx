@@ -12,7 +12,7 @@ import {
   View,
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import { commonStyles } from "theme/commonStyles";
+import { commonStyles } from "@/src/theme/commonStyles";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { registerSchema, RegisterSchemaType } from "../schema/registerSchema";
@@ -20,7 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Toast from "react-native-toast-message";
 import Divider from "../components/Divider";
 import { useTheme } from "@/src/store/useThemeStore";
-import { CustomTheme } from "@/theme/theme";
+import { CustomTheme } from "@/src/theme/theme";
 
 const { height } = Dimensions.get("window");
 

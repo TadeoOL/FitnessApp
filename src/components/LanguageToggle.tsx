@@ -9,11 +9,7 @@ import {
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useThemeStore } from "../store/useThemeStore";
-
-const LANGUAGES = [
-  { code: "en", label: "English", flag: "🇺🇸" },
-  { code: "es", label: "Español", flag: "🇲🇽" },
-];
+import { useLanguages } from "../constants/languages";
 
 export const LanguageToggle = () => {
   const { i18n } = useTranslation();
@@ -36,7 +32,7 @@ export const LanguageToggle = () => {
         onPress={() => setIsVisible(true)}
       >
         <Text style={styles.text}>
-          {LANGUAGES.find((lang) => lang.code === currentLanguage)?.flag}
+          {useLanguages().find((lang) => lang.code === currentLanguage)?.flag}
         </Text>
       </TouchableOpacity>
 
@@ -56,7 +52,7 @@ export const LanguageToggle = () => {
               { backgroundColor: theme.customColors.background.paper },
             ]}
           >
-            {LANGUAGES.map((language) => (
+            {useLanguages().map((language) => (
               <TouchableOpacity
                 key={language.code}
                 style={[

@@ -3,13 +3,13 @@
     "auth": {
       "login": {
         "title": "Inicio de sesión",
-      "email": "Correo electrónico",
-      "password": "Contraseña",
-      "forgotPassword": "¿Olvidaste tu contraseña?",
-      "signIn": "Iniciar sesión",
-      "signUp": "Registrarse",
-      "dontHaveAccount": "¿No tienes una cuenta?",
-      "emailError": "Es necesario ingresar un correo electrónico.",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "forgotPassword": "¿Olvidaste tu contraseña?",
+        "signIn": "Iniciar sesión",
+        "signUp": "Registrarse",
+        "dontHaveAccount": "¿No tienes una cuenta?",
+        "emailError": "Es necesario ingresar un correo electrónico.",
         "passwordError": "Es necesario ingresar una contraseña."
       }
     },
@@ -23,77 +23,77 @@
       "done": "Listo"
     },
     "initialForm": {
-    "basicInfo": {
-      "title": "¡Bienvenido!",
-      "description": "Para brindarte una experiencia personalizada 🚀, necesitamos recolectar algunos datos importantes sobre ti.",
-      "helpText": "Esta información nos ayudará a:",
-      "bulletPoints": {
-        "calories": "Calcular tus necesidades calóricas",
-        "exercises": "Personalizar tu plan de ejercicios",
-        "goals": "Establecer objetivos realistas",
-        "progress": "Monitorear tu progreso efectivamente"
-      }
-    },
-    "personalInfo": {
-      "title": "Información Personal",
-      "fullName": {
-        "label": "Nombre completo",
-        "placeholder": "Ej: Juan Pérez",
-        "error": "Es necesario ingresar un nombre completo."
-      },
-      "birthDate": {
-        "label": "Fecha de nacimiento",
-        "placeholder": "Selecciona una fecha",
-        "modalTitle": "Selecciona tu fecha de nacimiento",
-        "error": "Es necesario ingresar una fecha de nacimiento."
-      }
-    },
-    "bodyMeasurements": {
-      "title": "Medidas Corporales",
-      "height": {
-        "label": "Altura (cm)",
-        "placeholder": "Ej: 175",
-        "error": "Es necesario ingresar una altura."
-      },
-      "weight": {
-        "label": "Peso (kg)",
-        "placeholder": "Ej: 70",
-        "error": "Es necesario ingresar un peso."
-      }
-    },
-    "activityLevel": {
-      "title": "Nivel de Actividad",
-      "subtitle": "Selecciona el nivel que mejor describa tu actividad física diaria",
-      "levels": {
-        "sedentary": {
-          "title": "Sedentario",
-          "description": "Poco o ningún ejercicio, trabajo de escritorio",
-          "examples": "Ej: Programador, oficinista, diseñador"
-        },
-        "light": {
-          "title": "Ligeramente activo",
-          "description": "Ejercicio ligero 1-3 días por semana",
-          "examples": "Ej: Profesor, vendedor, estudiante"
-        },
-        "moderate": {
-          "title": "Moderadamente activo",
-          "description": "Ejercicio moderado 3-5 días por semana",
-          "examples": "Ej: Mesero, mecánico, electricista"
-        },
-        "very": {
-          "title": "Muy activo",
-          "description": "Ejercicio intenso 6-7 días por semana",
-          "examples": "Ej: Instructor de gimnasio, cartero, obrero"
-        },
-        "extra": {
-          "title": "Extra activo",
-          "description": "Ejercicio muy intenso diariamente o trabajo físico intenso",
-          "examples": "Ej: Atleta, granjero, constructor"
+      "basicInfo": {
+        "title": "¡Bienvenido!",
+        "description": "Para brindarte una experiencia personalizada 🚀, necesitamos recolectar algunos datos importantes sobre ti.",
+        "helpText": "Esta información nos ayudará a:",
+        "bulletPoints": {
+          "calories": "Calcular tus necesidades calóricas",
+          "exercises": "Personalizar tu plan de ejercicios",
+          "goals": "Establecer objetivos realistas",
+          "progress": "Monitorear tu progreso efectivamente"
         }
       },
-      "bodyMeasurement": {
-        "title": "Medición del Cuerpo",
-        "subtitle": "Selecciona el tipo de medición que mejor describa tu cuerpo"
+      "personalInfo": {
+        "title": "Información Personal",
+        "fullName": {
+          "label": "Nombre completo",
+          "placeholder": "Ej: Juan Pérez",
+          "error": "Es necesario ingresar un nombre completo."
+        },
+        "birthDate": {
+          "label": "Fecha de nacimiento",
+          "placeholder": "Selecciona una fecha",
+          "modalTitle": "Selecciona tu fecha de nacimiento",
+          "error": "Es necesario ingresar una fecha de nacimiento."
+        }
+      },
+      "bodyMeasurements": {
+        "title": "Medidas Corporales",
+        "height": {
+          "label": "Altura (cm)",
+          "placeholder": "Ej: 175",
+          "error": "Es necesario ingresar una altura."
+        },
+        "weight": {
+          "label": "Peso (kg)",
+          "placeholder": "Ej: 70",
+          "error": "Es necesario ingresar un peso."
+        }
+      },
+      "activityLevel": {
+        "title": "Nivel de Actividad",
+        "subtitle": "Selecciona el nivel que mejor describa tu actividad física diaria",
+        "levels": {
+          "sedentary": {
+            "title": "Sedentario",
+            "description": "Poco o ningún ejercicio, trabajo de escritorio",
+            "examples": "Ej: Programador, oficinista, diseñador"
+          },
+          "light": {
+            "title": "Ligeramente activo",
+            "description": "Ejercicio ligero 1-3 días por semana",
+            "examples": "Ej: Profesor, vendedor, estudiante"
+          },
+          "moderate": {
+            "title": "Moderadamente activo",
+            "description": "Ejercicio moderado 3-5 días por semana",
+            "examples": "Ej: Mesero, mecánico, electricista"
+          },
+          "very": {
+            "title": "Muy activo",
+            "description": "Ejercicio intenso 6-7 días por semana",
+            "examples": "Ej: Instructor de gimnasio, cartero, obrero"
+          },
+          "extra": {
+            "title": "Extra activo",
+            "description": "Ejercicio muy intenso diariamente o trabajo físico intenso",
+            "examples": "Ej: Atleta, granjero, constructor"
+          }
+        },
+        "bodyMeasurement": {
+          "title": "Medición del Cuerpo",
+          "subtitle": "Selecciona el tipo de medición que mejor describa tu cuerpo"
         }
       }
     },
@@ -103,10 +103,40 @@
         "title": "Detalles de Configuración"
       },
       "sections": {
-        "account": "Cuenta",
-        "display": "Pantalla",
-        "theme": "Tema"
+        "account": {
+          "title": "Cuenta",
+          "signOut": "Cerrar sesión",
+          "changeLanguage": "Cambiar idioma"
+        },
+        "display": {
+          "title": "Pantalla",
+          "appearance": "Apariencia"
+        },
+        "theme": {
+          "title": "Tema",
+          "matchDevice": "Coincidir con el dispositivo",
+          "alwaysLight": "Siempre claro",
+          "alwaysDark": "Siempre oscuro"
+        }
       }
+    },
+    "languages": {
+      "english": "Inglés",
+      "spanish": "Español"
+    },
+    "tabs": {
+      "sets": "Sets",
+      "home": "Inicio",
+      "myPlans": "Mis Planes",
+      "routines": "Rutinas"
+    },
+    "routines": {
+      "title": "Rutinas",
+      "create": "Nueva Rutina...",
+      "edit": "Editar Rutina",
+      "delete": "Eliminar Rutina",
+      "noRoutines": "No se encontraron rutinas",
+      "routinesList": "Lista de Rutinas"
     }
   }
-} 
+}

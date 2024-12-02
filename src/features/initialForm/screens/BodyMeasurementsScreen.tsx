@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { SetupStackParamList } from "@/src/types/navigation";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { commonStyles } from "@/theme/commonStyles";
+import { commonStyles } from "@/src/theme/commonStyles";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {

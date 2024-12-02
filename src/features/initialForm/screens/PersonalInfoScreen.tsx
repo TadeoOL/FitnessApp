@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { SetupStackParamList } from "@/src/types/navigation";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { commonStyles } from "@/theme/commonStyles";
+import { commonStyles } from "@/src/theme/commonStyles";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -22,7 +22,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { useState } from "react";
 import { useSetupStore } from "../store/useSetupStore";
 import { useTranslation } from "react-i18next";
-import { CustomTheme } from "@/theme/theme";
+import { CustomTheme } from "@/src/theme/theme";
 import { useTheme } from "@/src/store/useThemeStore";
 
 export const PersonalInfoScreen = () => {

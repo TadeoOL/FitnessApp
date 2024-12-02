@@ -1,44 +1,35 @@
-import { View, StyleSheet, ScrollView } from "react-native";
-import { SettingsSelectItem } from "../components/SettingsSelectItem";
-import { useTranslation } from "react-i18next";
-import {
-  ThemeMode,
-  useSetThemeMode,
-  useTheme,
-  useThemeMode,
-} from "@/src/store/useThemeStore";
-import { useColorScheme } from "react-native";
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { SettingsSelectItem } from '../components/SettingsSelectItem';
+import { useTranslation } from 'react-i18next';
+import { ThemeMode, useSetThemeMode, useTheme, useThemeMode } from '@/src/store/useThemeStore';
+import { useRealDeviceTheme } from '@/src/store/RealDeviceThemeContext';
 
-const themeOptions = [
-  { label: "Match Device", value: "system" },
-  { label: "Always Light", value: "light" },
-  { label: "Always Dark", value: "dark" },
-] as const;
+const themeOptions = (t: (key: string) => string) =>
+  [
+    { label: t('settings.sections.theme.matchDevice'), value: 'system' },
+    { label: t('settings.sections.theme.alwaysLight'), value: 'light' },
+    { label: t('settings.sections.theme.alwaysDark'), value: 'dark' },
+  ] as const;
 
 const SettingsDisplayScreen = () => {
   const theme = useTheme();
   const themeMode = useThemeMode();
   const setThemeMode = useSetThemeMode();
-  const systemTheme = useColorScheme();
+  const realDeviceTheme = useRealDeviceTheme();
   const { t } = useTranslation();
 
   const handleThemeSelect = (value: string) => {
-    setThemeMode(value as ThemeMode, value === "system" ? systemTheme : null);
+    setThemeMode(value as ThemeMode, value === 'system' ? realDeviceTheme : null);
   };
 
   return (
-    <ScrollView
-      style={[
-        styles.container,
-        { backgroundColor: theme.customColors.background.default },
-      ]}
-    >
+    <ScrollView style={[styles.container, { backgroundColor: theme.customColors.background.default }]}>
       <View style={styles.section}>
         <SettingsSelectItem
           icon="contrast-outline"
-          title={t("settings.sections.theme")}
+          title={t('settings.sections.theme.title')}
           value={themeMode}
-          options={themeOptions}
+          options={themeOptions(t)}
           onSelect={handleThemeSelect}
           isFirst
           isLast

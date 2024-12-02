@@ -3,13 +3,13 @@
     "auth": {
       "login": {
         "title": "Login",
-      "email": "Email",
-      "password": "Password",
-      "forgotPassword": "Forgot password?",
-      "signIn": "Log In",
-      "signUp": "Sign Up",
-      "dontHaveAccount": "Don't have an account?",
-      "emailError": "Email is required",
+        "email": "Email",
+        "password": "Password",
+        "forgotPassword": "Forgot password?",
+        "signIn": "Log In",
+        "signUp": "Sign Up",
+        "dontHaveAccount": "Don't have an account?",
+        "emailError": "Email is required",
         "passwordError": "Password is required"
       }
     },
@@ -23,72 +23,72 @@
       "done": "Done"
     },
     "initialForm": {
-    "basicInfo": {
-      "title": "Welcome!",
-      "description": "To provide you with a personalized experience 🚀, we need to collect some important information about you.",
-      "helpText": "This information will help us:",
-      "bulletPoints": {
-        "calories": "Calculate your caloric needs",
-        "exercises": "Customize your exercise plan",
-        "goals": "Set realistic goals",
-        "progress": "Monitor your progress effectively"
-      }
-    },
-    "personalInfo": {
-      "title": "Personal Information",
-      "fullName": {
-        "label": "Full name",
-        "placeholder": "Ex: John Doe",
-        "error": "Full name is required"
+      "basicInfo": {
+        "title": "Welcome!",
+        "description": "To provide you with a personalized experience 🚀, we need to collect some important information about you.",
+        "helpText": "This information will help us:",
+        "bulletPoints": {
+          "calories": "Calculate your caloric needs",
+          "exercises": "Customize your exercise plan",
+          "goals": "Set realistic goals",
+          "progress": "Monitor your progress effectively"
+        }
       },
-      "birthDate": {
-        "label": "Date of birth",
-        "placeholder": "Select a date",
-        "modalTitle": "Select your date of birth",
-        "error": "Date of birth is required"
-      }
-    },
-    "bodyMeasurements": {
-      "title": "Body Measurements",
-      "height": {
-        "label": "Height (cm)",
-        "placeholder": "Ex: 175",
-        "error": "Height is required"
+      "personalInfo": {
+        "title": "Personal Information",
+        "fullName": {
+          "label": "Full name",
+          "placeholder": "Ex: John Doe",
+          "error": "Full name is required"
+        },
+        "birthDate": {
+          "label": "Date of birth",
+          "placeholder": "Select a date",
+          "modalTitle": "Select your date of birth",
+          "error": "Date of birth is required"
+        }
       },
-      "weight": {
-        "label": "Weight (kg)",
-        "placeholder": "Ex: 70",
-        "error": "Weight is required"
-      }
-    },
-    "activityLevel": {
-      "title": "Activity Level",
-      "subtitle": "Select the level that best describes your daily physical activity",
-      "levels": {
-        "sedentary": {
-          "title": "Sedentary",
-          "description": "Little or no exercise, desk job",
-          "examples": "Ex: Programmer, office worker, designer"
+      "bodyMeasurements": {
+        "title": "Body Measurements",
+        "height": {
+          "label": "Height (cm)",
+          "placeholder": "Ex: 175",
+          "error": "Height is required"
         },
-        "light": {
-          "title": "Lightly active",
-          "description": "Light exercise 1-3 days per week",
-          "examples": "Ex: Teacher, salesperson, student"
-        },
-        "moderate": {
-          "title": "Moderately active",
-          "description": "Moderate exercise 3-5 days per week",
-          "examples": "Ex: Waiter, mechanic, electrician"
-        },
-        "very": {
-          "title": "Very active",
-          "description": "Intense exercise 6-7 days per week",
-          "examples": "Ex: Gym instructor, mail carrier, construction worker"
-        },
-        "extra": {
-          "title": "Extra active",
-          "description": "Very intense daily exercise or intense physical work",
-          "examples": "Ex: Athlete, farmer, builder"
+        "weight": {
+          "label": "Weight (kg)",
+          "placeholder": "Ex: 70",
+          "error": "Weight is required"
+        }
+      },
+      "activityLevel": {
+        "title": "Activity Level",
+        "subtitle": "Select the level that best describes your daily physical activity",
+        "levels": {
+          "sedentary": {
+            "title": "Sedentary",
+            "description": "Little or no exercise, desk job",
+            "examples": "Ex: Programmer, office worker, designer"
+          },
+          "light": {
+            "title": "Lightly active",
+            "description": "Light exercise 1-3 days per week",
+            "examples": "Ex: Teacher, salesperson, student"
+          },
+          "moderate": {
+            "title": "Moderately active",
+            "description": "Moderate exercise 3-5 days per week",
+            "examples": "Ex: Waiter, mechanic, electrician"
+          },
+          "very": {
+            "title": "Very active",
+            "description": "Intense exercise 6-7 days per week",
+            "examples": "Ex: Gym instructor, mail carrier, construction worker"
+          },
+          "extra": {
+            "title": "Extra active",
+            "description": "Very intense daily exercise or intense physical work",
+            "examples": "Ex: Athlete, farmer, builder"
           }
         }
       }
@@ -99,10 +99,40 @@
         "title": "Settings Detail"
       },
       "sections": {
-        "account": "Account",
-        "display": "Display",
-        "theme": "Theme"
+        "account": {
+          "title": "Account",
+          "signOut": "Sign Out",
+          "changeLanguage": "Change Language"
+        },
+        "display": {
+          "title": "Display",
+          "appearance": "Appearance"
+        },
+        "theme": {
+          "title": "Theme",
+          "matchDevice": "Match Device",
+          "alwaysLight": "Always Light",
+          "alwaysDark": "Always Dark"
+        }
       }
+    },
+    "languages": {
+      "english": "English",
+      "spanish": "Spanish"
+    },
+    "tabs": {
+      "sets": "Sets",
+      "home": "Home",
+      "myPlans": "My Plans",
+      "routines": "Routines"
+    },
+    "routines": {
+      "title": "Routines",
+      "create": "New Routine...",
+      "edit": "Edit Routine",
+      "delete": "Delete Routine",
+      "noRoutines": "No routines found",
+      "routinesList": "Routine Lists"
     }
   }
-} 
+}

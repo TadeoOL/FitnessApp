@@ -3,9 +3,9 @@ import { Text, TouchableOpacity, View, StyleSheet } from "react-native";
 import { SetupStackParamList } from "@/src/types/navigation";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useTranslation } from "react-i18next";
-import { CustomTheme } from "@/theme/theme";
+import { CustomTheme } from "@/src/theme/theme";
 import { useTheme } from "@/src/store/useThemeStore";
-import { commonStyles } from "@/theme/commonStyles";
+import { commonStyles } from "@/src/theme/commonStyles";
 
 export const BasicInfoScreen = () => {
   const navigation =

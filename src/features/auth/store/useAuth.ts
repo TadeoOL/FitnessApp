@@ -3,6 +3,7 @@ import { create } from "zustand";
 interface Action {
   setIsLoggedIn: (isLoggedIn: boolean) => void;
   setHasCompletedSetup: (hasCompletedSetup: boolean) => void;
+  logout: () => void;
 }
 
 interface State {
@@ -20,4 +21,5 @@ export const useAuthStore = create<Action & State>()((set) => ({
   setIsLoggedIn: (isLoggedIn: boolean) => set({ isLoggedIn }),
   setHasCompletedSetup: (hasCompletedSetup: boolean) =>
     set({ hasCompletedSetup }),
+  logout: () => set(initialState),
 }));

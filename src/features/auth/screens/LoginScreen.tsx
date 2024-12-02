@@ -13,13 +13,15 @@ import {
   View,
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import { commonStyles } from "@/theme/commonStyles";
+import { commonStyles } from "@/src/theme/commonStyles";
 import { useAuthStore } from "../store/useAuth";
 import { useNavigation } from "@react-navigation/native";
 import { AuthScreenNavigationProp } from "@/src/types/navigation";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/store/useThemeStore";
-import { CustomTheme } from "@/theme/theme";
+import { CustomTheme } from "@/src/theme/theme";
+import Toast from "react-native-toast-message";
+import { AuthService } from "../services/auth.service";
 const { width, height } = Dimensions.get("window");
 
 const backgroundImage = require("../../../../assets/fitness-background.jpg");
@@ -34,13 +36,19 @@ export const LoginScreen = () => {
   const navigation = useNavigation<AuthScreenNavigationProp>();
   const { t } = useTranslation();
   const theme = useTheme();
-  console.log(backgroundImage);
-  console.log(iconImage);
-  const { setIsLoggedIn } = useAuthStore();
+  const { setIsLoggedIn, setHasCompletedSetup } = useAuthStore();
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    setIsLoggedIn(true);
+  const onSubmit = async (data: any) => {
+    try {
+      const response = await AuthService.login(data);
+      setHasCompletedSetup(response.hasCompletedSetup);
+      setIsLoggedIn(true);
+    } catch (error: any) {
+      Toast.show({
+        text1: `${error.message}`,
+        type: "error",
+      });
+    }
   };
 
   const dismissKeyboard = () => {

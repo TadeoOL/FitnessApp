@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { lightTheme, darkTheme, CustomTheme } from '@/theme/theme';
+import { lightTheme, darkTheme, CustomTheme } from '@/src/theme/theme';
 
 export type ThemeMode = 'system' | 'light' | 'dark';
 
@@ -11,7 +11,6 @@ interface ThemeStore {
   setThemeMode: (mode: ThemeMode, systemTheme?: 'light' | 'dark' | null) => void;
 }
 
-// Selectores reutilizables
 const selectTheme = (state: ThemeStore) => state.theme;
 const selectThemeMode = (state: ThemeStore) => state.themeMode;
 const selectSetThemeMode = (state: ThemeStore) => state.setThemeMode;
@@ -56,7 +55,6 @@ export const useThemeStore = create<ThemeStore>()(
   )
 );
 
-// Hooks específicos para cada parte del estado
 export const useTheme = () => useThemeStore(selectTheme);
 export const useThemeMode = () => useThemeStore(selectThemeMode);
 export const useSetThemeMode = () => useThemeStore(selectSetThemeMode);

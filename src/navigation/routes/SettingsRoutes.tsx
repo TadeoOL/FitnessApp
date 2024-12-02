@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import SettingsScreen from "@/src/features/settings/screens";
 import SettingsDisplayScreen from "@/src/features/settings/screens/SettingsDisplay";
 import { useTheme } from "@/src/store/useThemeStore";
+import SettingsAccountScreen from "@/src/features/settings/screens/SettingsAccount";
 
 const Stack = createNativeStackNavigator<SettingsStackParamList>();
 
@@ -62,10 +63,22 @@ export const SettingsRoutes = () => {
         }}
       />
       <Stack.Screen
+        name="SettingsAccount"
+        component={SettingsAccountScreen}
+        options={{
+          title: t("settings.sections.account.title"),
+          headerTintColor: theme.customColors.secondary.main,
+          headerTitleStyle: {
+            color: theme.customColors.text.primary,
+          },
+          headerBackTitle: t("settings.title"),
+        }}
+      />
+      <Stack.Screen
         name="SettingsDisplay"
         component={SettingsDisplayScreen}
         options={{
-          title: t("settings.sections.display"),
+          title: t("settings.sections.display.title"),
           headerTintColor: theme.customColors.secondary.main,
           headerTitleStyle: {
             color: theme.customColors.text.primary,
