@@ -21,11 +21,7 @@ export const useThemeStore = create<ThemeStore>()(
       themeMode: 'system',
       theme: lightTheme,
       setThemeMode: (mode: ThemeMode, systemTheme?: 'light' | 'dark' | null) => {
-        set((state) => {
-          if (mode === 'system' && state.themeMode === 'system') {
-            return state;
-          }
-
+        set(() => {
           let newTheme: CustomTheme;
           switch (mode) {
             case 'light':

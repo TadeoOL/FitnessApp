@@ -1,28 +1,18 @@
-import { useColorScheme as useNativeWindTheme } from 'nativewind';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSetThemeMode, useThemeStore } from '../store/useThemeStore';
-import { Appearance } from 'react-native';
-import { RealDeviceThemeProvider } from '../store/RealDeviceThemeContext';
+import { useColorScheme } from 'react-native';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const { setColorScheme } = useNativeWindTheme();
   const themeMode = useThemeStore((state) => state.themeMode);
-  const [realDeviceTheme, setRealDeviceTheme] = useState(Appearance.getColorScheme());
+  const colorDevice = useColorScheme();
   const setThemeMode = useSetThemeMode();
 
   useEffect(() => {
-    const appearance = Appearance.getColorScheme();
-    setRealDeviceTheme(appearance || 'light');
-  }, []);
-
-  useEffect(() => {
     if (themeMode === 'system') {
-      setThemeMode('system', realDeviceTheme);
-      setColorScheme(realDeviceTheme || 'light');
-    } else {
-      setColorScheme(themeMode);
+      console.log('colorDevice', colorDevice);
+      setThemeMode('system', colorDevice);
     }
-  }, [themeMode, realDeviceTheme]);
+  }, [themeMode, colorDevice]);
 
-  return <RealDeviceThemeProvider value={realDeviceTheme}>{children}</RealDeviceThemeProvider>;
+  return <>{children}</>;
 }

@@ -1,8 +1,8 @@
-import { useAuthStore } from "../features/auth/store/useAuth";
-import { AuthRoutes } from "./routes/AuthRoutes";
-import { SetupRoutes } from "./routes/SetupRoutes";
-import { RootStack } from "./stacks/RootStack";
-import { AuthInitializer } from "../features/auth/components/AuthInitializer";
+import { useAuthStore } from '../features/auth/store/useAuth';
+import { AuthRoutes } from './routes/AuthRoutes';
+import { SetupRoutes } from './routes/SetupRoutes';
+import { RootStack } from './stacks/RootStack';
+import { AuthInitializer } from '../features/auth/components/AuthInitializer';
 
 export const AppNavigator = () => {
   return (

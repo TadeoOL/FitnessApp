@@ -1,15 +1,18 @@
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
-import { useAppTheme } from "../hooks/useAppTheme";
+import { TouchableOpacity, Text, StyleSheet, useColorScheme } from 'react-native';
+import { ThemeMode, useSetThemeMode, useThemeMode } from '../store/useThemeStore';
 
 export const ThemeToggle = () => {
-  const { themeMode, setThemeMode } = useAppTheme();
+  const setThemeMode = useSetThemeMode();
+  const themeMode = useThemeMode();
+  const colorDevice = useColorScheme();
+  const isSystem = themeMode === 'system';
 
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => setThemeMode(themeMode === "light" ? "dark" : "light")}
+      onPress={() => setThemeMode(isSystem ? (colorDevice as ThemeMode) : themeMode === 'light' ? 'dark' : 'light')}
     >
-      <Text style={styles.icon}>{themeMode === "light" ? "🌙" : "☀️"}</Text>
+      <Text style={styles.icon}>{themeMode === 'light' ? '🌙' : '☀️'}</Text>
     </TouchableOpacity>
   );
 };

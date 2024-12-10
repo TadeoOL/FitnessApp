@@ -136,7 +136,8 @@
       "edit": "Editar Rutina",
       "delete": "Eliminar Rutina",
       "noRoutines": "No se encontraron rutinas",
-      "routinesList": "Lista de Rutinas"
+      "routinesList": "Lista de Rutinas",
+      "addExercise": "Agregar ejercicio"
     }
   }
 }

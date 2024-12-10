@@ -1,12 +1,12 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import SetsScreen from "@/src/features/sets/screens";
-import DashboardScreen from "@/src/features/dashboard/screens";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
-import { RootStackParamList } from "@/src/types/navigation";
-import { useTheme } from "@/src/store/useThemeStore";
-import { useTranslation } from "react-i18next";
-import RoutinesScreen from "@/src/features/routines/screens/Routines";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import SetsScreen from '@/src/features/sets/screens';
+import DashboardScreen from '@/src/features/dashboard/screens';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '@/src/types/navigation';
+import { useTheme } from '@/src/store/useThemeStore';
+import { useTranslation } from 'react-i18next';
+import RoutinesScreen from '@/src/features/routines/screens/Routines';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,12 +20,12 @@ export const MainRoutes = () => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === t("tabs.home")) {
-            iconName = focused ? "home" : "home-outline";
-          } else if (route.name === t("tabs.myPlans")) {
-            iconName = focused ? "document-text" : "document-text-outline";
-          } else if (route.name === t("tabs.routines")) {
-            iconName = focused ? "barbell" : "barbell-outline";
+          if (route.name === t('tabs.home')) {
+            iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === t('tabs.myPlans')) {
+            iconName = focused ? 'document-text' : 'document-text-outline';
+          } else if (route.name === t('tabs.routines')) {
+            iconName = focused ? 'barbell' : 'barbell-outline';
           }
 
           return <Ionicons name={iconName as any} size={size} color={color} />;
@@ -36,17 +36,16 @@ export const MainRoutes = () => {
           backgroundColor: theme.customColors.background.paper,
           borderTopColor: theme.customColors.divider,
         },
-        animation: "slide_from_right",
-        animationDuration: 300,
+        animation: 'fade',
       })}
     >
       <Tab.Screen
-        name={t("tabs.home")}
+        name={t('tabs.home')}
         options={{
           headerShown: true,
-          headerTitle: "",
+          headerTitle: '',
           headerStyle: {
-            backgroundColor: "transparent",
+            backgroundColor: 'transparent',
           },
           headerLeft: () => (
             <Ionicons
@@ -57,20 +56,19 @@ export const MainRoutes = () => {
                 color: theme.customColors.secondary.main,
               }}
               onPress={() => {
-                navigation.navigate("SettingsModal");
+                navigation.navigate('SettingsModal');
               }}
             />
           ),
         }}
         component={DashboardScreen}
       />
-      <Tab.Screen name={t("tabs.myPlans")} component={SetsScreen} />
+      <Tab.Screen name={t('tabs.myPlans')} component={SetsScreen} />
       <Tab.Screen
-        name={t("tabs.routines")}
+        name={t('tabs.routines')}
         component={RoutinesScreen}
-        options={{ headerShown: false }}
+        options={{ headerShown: true, headerStyle: { backgroundColor: 'transparent' }, headerTitle: '' }}
       />
-      {/* <Tab.Screen name={t("tabs.sets")} component={SetsScreen} /> */}
     </Tab.Navigator>
   );
 };

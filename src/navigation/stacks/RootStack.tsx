@@ -1,8 +1,9 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { MainRoutes } from "../routes/MainRoutes";
-import { SettingsRoutes } from "../routes/SettingsRoutes";
-import { RootStackParamList } from "../../types/navigation";
-import { Platform } from "react-native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { MainRoutes } from '../routes/MainRoutes';
+import { SettingsRoutes } from '../routes/SettingsRoutes';
+import { RootStackParamList } from '../../types/navigation';
+import { Platform } from 'react-native';
+import { RoutineRoutes } from '../routes/RoutineRoutes';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -10,7 +11,7 @@ export const RootStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        animation: Platform.OS === "ios" ? "default" : "slide_from_right",
+        animation: Platform.OS === 'ios' ? 'default' : 'slide_from_right',
         animationDuration: 300,
       }}
     >
@@ -25,14 +26,23 @@ export const RootStack = () => {
       </Stack.Group>
       <Stack.Group
         screenOptions={{
-          presentation: "modal",
-          animation: Platform.OS === "ios" ? "default" : "fade",
+          presentation: 'modal',
+          animation: Platform.OS === 'ios' ? 'default' : 'fade',
           animationDuration: 300,
         }}
       >
         <Stack.Screen
           name="SettingsModal"
           component={SettingsRoutes}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Group>
+      <Stack.Group>
+        <Stack.Screen
+          name="RoutineRoutes"
+          component={RoutineRoutes}
           options={{
             headerShown: false,
           }}

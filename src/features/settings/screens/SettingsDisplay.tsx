@@ -1,8 +1,7 @@
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView, useColorScheme } from 'react-native';
 import { SettingsSelectItem } from '../components/SettingsSelectItem';
 import { useTranslation } from 'react-i18next';
 import { ThemeMode, useSetThemeMode, useTheme, useThemeMode } from '@/src/store/useThemeStore';
-import { useRealDeviceTheme } from '@/src/store/RealDeviceThemeContext';
 
 const themeOptions = (t: (key: string) => string) =>
   [
@@ -15,11 +14,11 @@ const SettingsDisplayScreen = () => {
   const theme = useTheme();
   const themeMode = useThemeMode();
   const setThemeMode = useSetThemeMode();
-  const realDeviceTheme = useRealDeviceTheme();
   const { t } = useTranslation();
+  const colorDevice = useColorScheme();
 
   const handleThemeSelect = (value: string) => {
-    setThemeMode(value as ThemeMode, value === 'system' ? realDeviceTheme : null);
+    setThemeMode(value as ThemeMode, value === 'system' ? colorDevice : null);
   };
 
   return (

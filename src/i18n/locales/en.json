@@ -132,7 +132,8 @@
       "edit": "Edit Routine",
       "delete": "Delete Routine",
       "noRoutines": "No routines found",
-      "routinesList": "Routine Lists"
+      "routinesList": "Routine Lists",
+      "addExercise": "Add Exercise"
     }
   }
 }

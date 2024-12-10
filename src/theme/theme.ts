@@ -44,6 +44,24 @@ export const lightTheme: ExtendedTheme = {
     notification: colorPalette.light.error.main,
   },
   customColors: colorPalette.light,
+  fonts: {
+    regular: {
+      fontFamily: 'Roboto-Regular',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'Roboto-Medium',
+      fontWeight: 'normal',
+    },
+    bold: {
+      fontFamily: 'Roboto-Bold',
+      fontWeight: 'bold',
+    },
+    heavy: {
+      fontFamily: 'Roboto-Heavy',
+      fontWeight: '900',
+    },
+  },
 };
 
 export const darkTheme: ExtendedTheme = {
@@ -57,6 +75,24 @@ export const darkTheme: ExtendedTheme = {
     notification: colorPalette.dark.error.main,
   },
   customColors: colorPalette.dark,
+  fonts: {
+    regular: {
+      fontFamily: 'Roboto-Regular',
+      fontWeight: 'normal',
+    },
+    medium: {
+      fontFamily: 'Roboto-Medium',
+      fontWeight: 'normal',
+    },
+    bold: {
+      fontFamily: 'Roboto-Bold',
+      fontWeight: 'bold',
+    },
+    heavy: {
+      fontFamily: 'Roboto-Heavy',
+      fontWeight: '900',
+    },
+  },
 };
 
 export type CustomTheme = typeof lightTheme;

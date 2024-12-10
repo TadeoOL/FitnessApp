@@ -1,5 +1,5 @@
-import { InitialFormValidator } from "../navigators/InitialFormValidator";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { InitialFormValidator } from '../navigators/InitialFormValidator';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const SetupStack = createNativeStackNavigator();
 
