@@ -1,4 +1,4 @@
-import { NavigatorScreenParams } from '@react-navigation/native';
+import { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Routine } from '../features/routines/types/routine.type';
 
@@ -40,12 +40,7 @@ export type MainScreenNavigationProp = NativeStackNavigationProp<MainStackParamL
 export type RootStackParamList = {
   MainTabs: undefined;
   SettingsModal: undefined;
-  RoutineRoutes: {
-    screen: string;
-    params: {
-      routine: Routine;
-    };
-  };
+  RoutineRoutes: NavigatorScreenParams<RoutineStackParamList>;
 };
 
 export type RootStackNavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -56,19 +51,23 @@ export type SettingsStackParamList = {
   SettingsAccount: undefined;
 };
 
+export type SettingsStackNavigationProp = NativeStackNavigationProp<SettingsStackParamList>;
 // Routine Stack
 export type RoutineStackParamList = {
   Routines: undefined;
-  RoutineDetails: {
-    routine: Routine;
+  RoutineDetails?: {
+    routine?: Routine;
   };
   RoutineEdit: {
     routine: Routine;
   };
-  AddExercise: {
-    routineId: string;
+  AddExerciseModal: {
+    routine?: Routine;
   };
+  AddRoutineModal: undefined;
+  DetailsRoutine: undefined;
 };
 
 // Añade el tipo de navegación para rutinas
 export type RoutineScreenNavigationProp = NativeStackNavigationProp<RoutineStackParamList>;
+export type RoutineScreenRouteProp = RouteProp<RoutineStackParamList, 'RoutineDetails' | 'AddExerciseModal'>;

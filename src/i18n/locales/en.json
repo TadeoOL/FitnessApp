@@ -133,7 +133,23 @@
       "delete": "Delete Routine",
       "noRoutines": "No routines found",
       "routinesList": "Routine Lists",
-      "addExercise": "Add Exercise"
+      "addExercise": "Add Exercise",
+      "addRoutine": "Add Routine",
+      "nameRequired": "Name is required",
+      "add": "Add",
+      "labels": {
+        "name": "Name",
+        "description": "Description"
+      },
+      "success": "Routine created successfully",
+      "error": "Error creating routine",
+      "routineDeleted": "Routine deleted successfully"
+    },
+    "exercises": {
+      "title": "Exercises",
+      "noExercises": "No exercises found",
+      "search": "Search exercises",
+      "myExercises": "My exercises"
     }
   }
 }

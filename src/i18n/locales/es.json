@@ -137,7 +137,23 @@
       "delete": "Eliminar Rutina",
       "noRoutines": "No se encontraron rutinas",
       "routinesList": "Lista de Rutinas",
-      "addExercise": "Agregar ejercicio"
+      "addExercise": "Agregar ejercicio",
+      "addRoutine": "Agregar Rutina",
+      "nameRequired": "El nombre es requerido",
+      "add": "Agregar",
+      "labels": {
+        "name": "Nombre",
+        "description": "Descripción"
+      },
+      "success": "Rutina creada correctamente",
+      "error": "Error al crear la rutina",
+      "routineDeleted": "Rutina eliminada correctamente"
+    },
+    "exercises": {
+      "title": "Ejercicios",
+      "noExercises": "No se encontraron ejercicios",
+      "search": "Buscar ejercicios",
+      "myExercises": "Mis ejercicios"
     }
   }
 }

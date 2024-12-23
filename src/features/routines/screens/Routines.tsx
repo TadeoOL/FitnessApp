@@ -8,30 +8,74 @@ import { Routine } from '../types/routine.type';
 import { RootStackNavigationProp } from '@/src/types/navigation';
 import FullScreenLoader from '@/src/components/FullScreenLoader';
 import { useNavigation } from '@react-navigation/native';
+import { useEffect } from 'react';
+import { useRoutineStore } from '../store/store.routine';
+import { useDeleteRoutine } from '../hooks/useDeleteRoutine';
+import Toast from 'react-native-toast-message';
+import { ToastComponent } from '@/src/components/toast/ToastComponent';
 
 const RoutinesScreen = () => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const { data: routines, isLoading } = useGetRoutines();
+  const { data: routinesResponse, isLoading } = useGetRoutines();
   const navigation = useNavigation<RootStackNavigationProp>();
+  const { routines, setRoutines, setRoutine, deleteRoutine: deleteRoutineStore } = useRoutineStore();
+  const { mutateAsync: deleteRoutine } = useDeleteRoutine();
 
   const onRoutinePress = (routine: Routine) => {
     navigation.navigate('RoutineRoutes', {
       screen: 'RoutineDetails',
-      params: {
-        routine,
+    });
+    setRoutine(routine);
+  };
+
+  const onAddRoutine = () => {
+    navigation.navigate('RoutineRoutes', {
+      screen: 'AddRoutineModal',
+    });
+  };
+
+  const onDeleteRoutine = (routine: Routine) => {
+    deleteRoutine(routine.id, {
+      onSuccess: () => {
+        deleteRoutineStore(routine.id);
+        Toast.show({
+          type: 'success',
+          text1: t('routines.routineDeleted'),
+        });
+      },
+      onError: (error) => {
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: error.message,
+        });
       },
     });
   };
+
+  useEffect(() => {
+    if (routinesResponse) {
+      setRoutines(routinesResponse);
+    }
+  }, [routinesResponse]);
 
   if (isLoading) {
     return <FullScreenLoader />;
   }
 
+  console.log({ routines });
+
   return (
     <View style={styles(theme).container}>
       <Text style={styles(theme).title}>{t('routines.title')}</Text>
-      <RoutineList routines={routines || []} onRoutinePress={onRoutinePress} />
+      <RoutineList
+        routines={routines || []}
+        onRoutinePress={onRoutinePress}
+        onAddRoutine={onAddRoutine}
+        onDeleteRoutine={onDeleteRoutine}
+      />
+      <ToastComponent />
     </View>
   );
 };

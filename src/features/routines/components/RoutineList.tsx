@@ -10,11 +10,13 @@ interface RoutineListProps {
   routines: Routine[];
   onAddRoutine?: () => void;
   onRoutinePress?: (routine: Routine) => void;
+  onDeleteRoutine?: (routine: Routine) => void;
 }
 
-export const RoutineList = ({ routines, onAddRoutine, onRoutinePress }: RoutineListProps) => {
+export const RoutineList = ({ routines, onAddRoutine, onRoutinePress, onDeleteRoutine }: RoutineListProps) => {
   const theme = useTheme();
   const { t } = useTranslation();
+
   return (
     <View style={styles(theme).container}>
       <TouchableOpacity onPress={onAddRoutine} style={styles(theme).addRoutineButton}>
@@ -30,6 +32,7 @@ export const RoutineList = ({ routines, onAddRoutine, onRoutinePress }: RoutineL
           key={routine.id}
           routine={routine}
           onPress={onRoutinePress}
+          onDelete={onDeleteRoutine}
           isLastItem={index === routines.length - 1}
         />
       ))}

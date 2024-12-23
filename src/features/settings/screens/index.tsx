@@ -5,21 +5,21 @@ import { commonStyles } from '@/src/theme/commonStyles';
 import { settingsStyles } from '../styles/settingsStyles';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
-import { SettingsStackParamList } from '@/src/types/navigation';
+import { SettingsStackNavigationProp } from '@/src/types/navigation';
 
 export const SettingsScreen = () => {
   const theme = useTheme();
   const commonStyle = commonStyles(theme);
   const styles = settingsStyles(theme);
   const { t } = useTranslation();
-  const navigation = useNavigation<SettingsStackParamList>();
+  const { navigate } = useNavigation<SettingsStackNavigationProp>();
 
   const handleDisplayPress = () => {
-    navigation.SettingsDisplay;
+    navigate('SettingsDisplay');
   };
 
   const handleAccountPress = () => {
-    navigation.SettingsAccount;
+    navigate('SettingsAccount');
   };
 
   return (

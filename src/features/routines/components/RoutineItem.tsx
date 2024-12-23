@@ -1,27 +1,39 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Routine } from '../types/routine.type';
-import { CustomTheme } from '@/src/theme/theme';
-import { useTheme } from '@/src/store/useThemeStore';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
+import { useTheme } from '@/src/store/useThemeStore';
+import { CustomTheme } from '@/src/theme/theme';
 
 interface RoutineItemProps {
-  routine: Routine;
-  onPress?: (routine: Routine) => void;
+  routine: { name: string; description?: string };
+  onPress?: (routine: any) => void;
+  onDelete?: (routine: any) => void;
   isLastItem?: boolean;
 }
 
-const RoutineItem = ({ routine, onPress, isLastItem }: RoutineItemProps) => {
+const RoutineItem = ({ routine, onPress, onDelete, isLastItem }: RoutineItemProps) => {
   const theme = useTheme();
+
+  const renderRightActions = () => {
+    return (
+      <TouchableOpacity style={styles(theme).deleteAction} onPress={() => onDelete?.(routine)}>
+        <Ionicons name="trash-outline" size={24} color={theme.customColors.error.main} />
+      </TouchableOpacity>
+    );
+  };
+
   return (
-    <TouchableOpacity onPress={() => onPress?.(routine)} style={styles(theme).container}>
-      <View style={styles(theme).iconContainer}>
-        <Ionicons name="reader-outline" size={24} color={theme.customColors.secondary.main} />
-      </View>
-      <View style={styles(theme, isLastItem).content}>
-        <Text style={styles(theme).title}>{routine.name}</Text>
-        {routine.description && <Text style={styles(theme).description}>{routine.description}</Text>}
-      </View>
-    </TouchableOpacity>
+    <Swipeable renderRightActions={renderRightActions} overshootRight={true} friction={1}>
+      <TouchableOpacity onPress={() => onPress?.(routine)} style={styles(theme).container} activeOpacity={1}>
+        <View style={styles(theme).iconContainer}>
+          <Ionicons name="reader-outline" size={24} color={theme.customColors.secondary.main} />
+        </View>
+        <View style={styles(theme, isLastItem).content}>
+          <Text style={styles(theme).title}>{routine.name}</Text>
+          {routine.description && <Text style={styles(theme).description}>{routine.description}</Text>}
+        </View>
+      </TouchableOpacity>
+    </Swipeable>
   );
 };
 
@@ -32,6 +44,7 @@ const styles = (theme: CustomTheme, isLastItem?: boolean) =>
       alignItems: 'center',
       padding: 5,
       gap: 5,
+      backgroundColor: theme.customColors.background.default,
     },
     content: {
       flex: 1,
@@ -54,6 +67,23 @@ const styles = (theme: CustomTheme, isLastItem?: boolean) =>
       backgroundColor: theme.customColors.background.paper,
       justifyContent: 'center',
       alignItems: 'center',
+    },
+    rightActionContainer: {
+      justifyContent: 'center',
+      alignItems: 'flex-end',
+      backgroundColor: '#FF6B6B',
+      marginVertical: 5,
+    },
+    deleteAction: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 80,
+      height: '100%',
+    },
+    actionText: {
+      color: '#fff',
+      fontSize: 12,
+      marginTop: 4,
     },
   });
 
