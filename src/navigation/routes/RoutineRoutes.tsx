@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AddExercise from '@/src/features/routines/screens/AddExercise';
 import AddRoutine from '@/src/features/routines/screens/AddRoutine';
 import { DetailsRoutine } from '@/src/features/routines/screens/DetailsRoutine';
+import RoutineOrder from '@/src/features/routines/screens/RoutineOrder';
 
 const RoutineStack = createNativeStackNavigator<RoutineStackParamList>();
 
@@ -27,6 +28,7 @@ export const RoutineRoutes = () => {
       <RoutineStack.Screen name="AddExerciseModal" component={AddExercise} options={{ presentation: 'modal' }} />
       <RoutineStack.Screen name="AddRoutineModal" component={AddRoutine} options={{ presentation: 'modal' }} />
       <RoutineStack.Screen name="DetailsRoutine" component={DetailsRoutine} options={{ presentation: 'modal' }} />
+      <RoutineStack.Screen name="ChangeOrderRoutine" component={RoutineOrder} options={{ presentation: 'modal' }} />
     </RoutineStack.Navigator>
   );
 };

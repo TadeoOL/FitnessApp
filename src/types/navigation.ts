@@ -66,6 +66,7 @@ export type RoutineStackParamList = {
   };
   AddRoutineModal: undefined;
   DetailsRoutine: undefined;
+  ChangeOrderRoutine: undefined;
 };
 
 // Añade el tipo de navegación para rutinas

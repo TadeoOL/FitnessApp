@@ -1,20 +1,64 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Platform, StatusBar, InteractionManager } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@/src/store/useThemeStore';
 import { Ionicons } from '@expo/vector-icons';
 import { CustomTheme } from '@/src/theme/theme';
 import { RoutineScreenNavigationProp } from '@/src/types/navigation';
 import { useNavigation } from '@react-navigation/native';
-import { useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useRoutineStore } from '../store/store.routine';
 import { Routine } from '../types/routine.type';
+import { SelectPopover } from '@/src/components/SelectPopover';
+import { routineOptions } from '../constants/contants.routine';
+import HeaderBackButton from '@/src/components/HeaderBackButton';
 
 const RoutineDetail = () => {
   const theme = useTheme();
   const { t } = useTranslation();
   const { navigate, setOptions, goBack } = useNavigation<RoutineScreenNavigationProp>();
   const { setRoutine, routine } = useRoutineStore();
+  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const [anchorLayout, setAnchorLayout] = useState<{ x: number; y: number; width: number; height: number } | undefined>(
+    undefined
+  );
+  const [selectedOption, setSelectedOption] = useState<string>('');
+  // const routineSortedBy = useRoutineStore((state) => state.routineSortedBy);
 
+  useEffect(() => {
+    const selected = routineOptions(t).find((option) => option.value === selectedOption);
+    if (selected) {
+      switch (selected.value) {
+        case 'editDetails':
+          navigate('DetailsRoutine');
+          setSelectedOption('');
+          break;
+        case 'changeOrder':
+          navigate('ChangeOrderRoutine');
+          setSelectedOption('');
+          break;
+        case 'sortBy':
+          break;
+      }
+    }
+  }, [selectedOption]);
+
+  const ref = useRef<any>(null);
+
+  const handleOpenPopover = () => {
+    const HEADER_HEIGHT = 44;
+
+    InteractionManager.runAfterInteractions(() => {
+      ref.current?.measureInWindow((x: number, _y: number, width: number, height: number) => {
+        setAnchorLayout({
+          x,
+          y: HEADER_HEIGHT + (Platform.OS === 'ios' ? StatusBar.currentHeight || 0 : 0),
+          width,
+          height,
+        });
+        setIsPopoverVisible(true);
+      });
+    });
+  };
   useLayoutEffect(() => {
     setOptions({
       headerTitle: routine?.name,
@@ -24,14 +68,9 @@ const RoutineDetail = () => {
         color: theme.customColors.text.primary,
       },
 
-      headerLeft: () => (
-        <TouchableOpacity style={styles(theme).closeButton} onPress={goBack}>
-          <Ionicons name="chevron-back-outline" size={24} color={theme.customColors.secondary.main} />
-          <Text style={styles(theme).closeButtonText}>{t('routines.title')}</Text>
-        </TouchableOpacity>
-      ),
+      headerLeft: () => <HeaderBackButton onPress={goBack} title={t('routines.title')} />,
       headerRight: () => (
-        <TouchableOpacity onPress={() => navigate('DetailsRoutine')}>
+        <TouchableOpacity ref={ref} onPress={handleOpenPopover}>
           <Ionicons name="settings-outline" size={24} color={theme.customColors.secondary.main} />
         </TouchableOpacity>
       ),
@@ -58,6 +97,15 @@ const RoutineDetail = () => {
           </View>
         </TouchableOpacity>
       </View>
+      <SelectPopover
+        isVisible={isPopoverVisible}
+        onClose={() => setIsPopoverVisible(false)}
+        options={routineOptions(t)}
+        selectedValue={selectedOption}
+        onSelect={setSelectedOption}
+        anchorLayout={anchorLayout}
+        selectable={false}
+      />
     </>
   );
 };

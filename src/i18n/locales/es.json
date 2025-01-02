@@ -145,6 +145,15 @@
         "name": "Nombre",
         "description": "Descripción"
       },
+      "options": {
+        "editDetails": "Editar detalles",
+        "changeOrder": "Cambiar orden",
+        "sortBy": "Ordenar por"
+      },
+      "changeOrder": {
+        "title": "Cambiar orden",
+        "description": "Cambiar el orden de los ejercicios en la rutina"
+      },
       "success": "Rutina creada correctamente",
       "error": "Error al crear la rutina",
       "routineDeleted": "Rutina eliminada correctamente"

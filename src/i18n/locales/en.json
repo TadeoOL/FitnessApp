@@ -141,6 +141,15 @@
         "name": "Name",
         "description": "Description"
       },
+      "options": {
+        "editDetails": "Edit Details",
+        "changeOrder": "Change Order",
+        "sortBy": "Sort By"
+      },
+      "changeOrder": {
+        "title": "Change Order",
+        "description": "Change the order of the exercises in the routine"
+      },
       "success": "Routine created successfully",
       "error": "Error creating routine",
       "routineDeleted": "Routine deleted successfully"

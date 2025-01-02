@@ -15,6 +15,7 @@ import { useEditRoutineDetails } from '../hooks/useEditRoutineDetails';
 import { ToastComponent } from '@/src/components/toast/ToastComponent';
 import Toast from 'react-native-toast-message';
 import { Routine } from '../types/routine.type';
+import HeaderBackButton from '@/src/components/HeaderBackButton';
 
 export const DetailsRoutine = () => {
   const { routine, updateRoutine: updateRoutineStore } = useRoutineStore();
@@ -59,11 +60,7 @@ export const DetailsRoutine = () => {
           <Text style={styles(theme).doneButtonText}>{t('common.done')}</Text>
         </TouchableOpacity>
       ),
-      headerLeft: () => (
-        <TouchableOpacity onPress={goBack} disabled={isPending}>
-          <Text style={styles(theme).cancelButtonText}>{t('common.cancel')}</Text>
-        </TouchableOpacity>
-      ),
+      headerLeft: () => <HeaderBackButton onPress={goBack} title={t('common.cancel')} disabled={isPending} />,
       headerTitleStyle: {
         color: theme.customColors.text.primary,
       },

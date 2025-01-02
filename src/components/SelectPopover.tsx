@@ -1,14 +1,7 @@
-import {
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Modal,
-  Pressable,
-  Dimensions,
-} from "react-native";
-import { BlurView } from "expo-blur";
-import { useTheme } from "@/src/store/useThemeStore";
-import { Ionicons } from "@expo/vector-icons";
+import { Text, StyleSheet, TouchableOpacity, Modal, Pressable, Dimensions } from 'react-native';
+import { BlurView } from 'expo-blur';
+import { useTheme } from '@/src/store/useThemeStore';
+import { Ionicons } from '@expo/vector-icons';
 
 type Option = {
   label: string;
@@ -22,6 +15,7 @@ type SelectPopoverProps = {
   selectedValue: string;
   onSelect: (value: string) => void;
   anchorLayout?: { x: number; y: number; width: number; height: number };
+  selectable?: boolean;
 };
 
 export const SelectPopover = ({
@@ -31,10 +25,11 @@ export const SelectPopover = ({
   selectedValue,
   onSelect,
   anchorLayout,
+  selectable = true,
 }: SelectPopoverProps) => {
   const theme = useTheme();
-  const windowWidth = Dimensions.get("window").width;
-  const POPOVER_WIDTH = Math.min(300, windowWidth - 32); // Máximo 300 o el ancho de la pantalla menos márgenes
+  const windowWidth = Dimensions.get('window').width;
+  const POPOVER_WIDTH = Math.min(300, windowWidth - 32);
 
   const getPopoverPosition = () => {
     if (!anchorLayout) return { top: 0, left: 0 };
@@ -49,12 +44,7 @@ export const SelectPopover = ({
   const position = getPopoverPosition();
 
   return (
-    <Modal
-      visible={isVisible}
-      transparent
-      animationType="fade"
-      onRequestClose={onClose}
-    >
+    <Modal visible={isVisible} transparent animationType="fade" onRequestClose={onClose}>
       <Pressable style={styles.overlay} onPress={onClose}>
         <BlurView
           style={[
@@ -66,7 +56,7 @@ export const SelectPopover = ({
             },
           ]}
           intensity={30}
-          tint={theme.dark ? "dark" : "light"}
+          tint={theme.dark ? 'dark' : 'light'}
         >
           {options.map((option, index) => (
             <TouchableOpacity
@@ -88,17 +78,13 @@ export const SelectPopover = ({
                 style={[
                   styles.optionText,
                   { color: theme.customColors.text.primary },
-                  selectedValue === option.value && styles.selectedText,
+                  selectable && selectedValue === option.value && styles.selectedText,
                 ]}
               >
                 {option.label}
               </Text>
-              {selectedValue === option.value && (
-                <Ionicons
-                  name="checkmark"
-                  size={22}
-                  color={theme.customColors.secondary.main}
-                />
+              {selectable && selectedValue === option.value && (
+                <Ionicons name="checkmark" size={22} color={theme.customColors.secondary.main} />
               )}
             </TouchableOpacity>
           ))}
@@ -111,13 +97,13 @@ export const SelectPopover = ({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
   popover: {
-    position: "absolute",
+    position: 'absolute',
     borderRadius: 14,
-    overflow: "hidden",
-    shadowColor: "#000",
+    overflow: 'hidden',
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 4,
@@ -127,13 +113,13 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   option: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "rgba(60, 60, 67, 0.36)",
+    borderBottomColor: 'rgba(60, 60, 67, 0.36)',
   },
   firstOption: {
     borderTopLeftRadius: 14,
@@ -146,10 +132,10 @@ const styles = StyleSheet.create({
   },
   optionText: {
     fontSize: 17,
-    fontWeight: "400",
+    fontWeight: '400',
     letterSpacing: -0.4,
   },
   selectedText: {
-    fontWeight: "600",
+    fontWeight: '600',
   },
 });
